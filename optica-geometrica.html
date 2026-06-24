@@ -6,140 +6,120 @@
 <title>Lista de Óptica Geométrica — Acorda pra Física</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#f5f1e8;
-    --paper-2:#efe9dc;
-    --ink:#17171a;
-    --muted:#6d6a60;
-    --line:#d8d1c2;
-    --accent:#1d3461;
-    --accent-soft:#e7e9f0;
-    --highlight:#c1452e;
+    --navy: #14344C;
+    --red: #B21119;
+    --red-soft: #F1ECEC;
+    --steel: #84939E;
+    --rule: rgba(20,52,76,0.15);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Spline Sans',system-ui,sans-serif;
+    background:#F7F7F7;
+    color:var(--navy);
+    font-family:'DM Sans',system-ui,sans-serif;
     font-size:17px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  .spectrum{
-    height:6px;width:100%;
-    background:linear-gradient(90deg,#c1452e,#e08a1e,#e8c93a,#3f9e54,#2d6fb0,#5a3f9e);
-  }
   .wrap{max-width:820px;margin:0 auto;padding:0 28px}
 
-  /* HEADER */
   header{padding:64px 0 40px}
   .brand{
+    font-family:'Montserrat',sans-serif;
     font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--accent);font-weight:600;margin-bottom:22px;
+    color:var(--navy);font-weight:700;margin-bottom:22px;
   }
   h1{
-    font-family:'Fraunces',serif;font-weight:600;
+    font-family:'Montserrat',sans-serif;font-weight:900;
     font-size:clamp(2.4rem,6vw,3.6rem);line-height:1.05;
     letter-spacing:-.02em;margin-bottom:18px;
   }
-  h1 em{font-style:italic;color:var(--accent)}
-  .lead{font-size:1.05rem;color:var(--muted);max-width:60ch}
+  h1 em{font-style:italic;color:var(--red)}
+  .lead{font-size:1.05rem;color:var(--steel);max-width:60ch}
   .meta{
     display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
     font-size:13px;letter-spacing:.04em;
   }
   .tag{
-    background:var(--paper-2);border:1px solid var(--line);
-    padding:5px 12px;border-radius:999px;color:var(--muted);
+    background:var(--red-soft);border:1px solid rgba(178,17,25,0.20);
+    padding:5px 12px;border-radius:999px;color:var(--steel);
   }
 
-  /* ACTIONS */
-  .actions{
-    display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;
-  }
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:'Spline Sans',sans-serif;font-size:15px;font-weight:600;
-    padding:13px 22px;border-radius:10px;cursor:pointer;
-    text-decoration:none;border:1.5px solid var(--accent);
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .btn-primary{background:var(--accent);color:var(--paper)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px var(--accent)}
-  .btn-ghost{background:transparent;color:var(--accent)}
-  .btn-ghost:hover{background:var(--accent-soft);transform:translateY(-2px)}
-  .btn svg{width:17px;height:17px}
-
-  /* SECTIONS */
-  section.block{padding:42px 0;border-top:1px solid var(--line)}
+  section.block{padding:42px 0;border-top:1px solid var(--rule)}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
   .sec-num{
-    font-family:'Fraunces',serif;font-size:2.2rem;font-weight:600;
-    color:var(--accent);line-height:1;flex-shrink:0;
+    font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;
+    color:var(--navy);line-height:1;flex-shrink:0;
   }
   .sec-title{
-    font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;
+    font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:700;
     letter-spacing:-.01em;line-height:1.2;
   }
   .q{
     display:grid;grid-template-columns:42px 1fr;gap:6px 14px;
-    padding:16px 0;border-bottom:1px dashed var(--line);
+    padding:16px 0;border-bottom:1px dashed var(--rule);
   }
   .q:last-child{border-bottom:none}
   .q-n{
-    font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;
-    color:var(--highlight);
+    font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.15rem;
+    color:var(--red);
   }
   .q-body{align-self:center}
-  .q-body .sub{display:block;color:var(--muted);font-size:.92rem;margin-top:3px}
-  .opts{margin-top:5px;color:var(--ink)}
-  .opts b{color:var(--accent);font-weight:600}
-  .fx{font-family:'Fraunces',serif;font-style:italic}
+  .q-body .sub{display:block;color:var(--steel);font-size:.92rem;margin-top:3px}
+  .opts{margin-top:5px;color:var(--navy)}
+  .opts b{color:var(--navy);font-weight:700}
+  .q-body b{color:var(--navy);font-weight:700}
+  .fx{font-family:'Montserrat',sans-serif;font-style:italic}
 
-  /* RECOMENDAÇÃO */
   .reco{
-    margin:14px 0 0;background:var(--paper-2);
-    border:1px solid var(--line);border-radius:16px;padding:34px 30px;
+    margin:14px 0 0;background:var(--red-soft);
+    border:1px solid rgba(178,17,25,0.20);border-radius:16px;padding:34px 30px;
   }
   .reco h2{
-    font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;
+    font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;
     margin-bottom:8px;
   }
-  .reco .reco-lead{color:var(--muted);font-size:.95rem;margin-bottom:22px}
-  .reco-item{padding:15px 0;border-top:1px solid var(--line)}
+  .reco .reco-lead{color:var(--steel);font-size:.95rem;margin-bottom:22px}
+  .reco-item{padding:15px 0;border-top:1px solid rgba(178,17,25,0.15)}
   .reco-item:first-of-type{border-top:none}
   .reco-item h3{
-    font-family:'Spline Sans',sans-serif;font-size:1.02rem;font-weight:600;
-    color:var(--accent);margin-bottom:4px;
+    font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;
+    color:var(--navy);margin-bottom:4px;
   }
-  .reco-item p{font-size:.95rem;color:var(--ink)}
+  .reco-item p{font-size:.95rem;color:var(--navy)}
 
-  footer{padding:50px 0 70px;text-align:center;color:var(--muted);font-size:13px}
-  footer .spectrum-mini{
-    width:120px;height:3px;margin:0 auto 18px;border-radius:2px;
-    background:linear-gradient(90deg,#c1452e,#e8c93a,#3f9e54,#2d6fb0,#5a3f9e);
+  footer{
+    padding:50px 0 60px;
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--rule);
+    font-size:13px;color:var(--steel);
   }
+  footer a{color:var(--red);text-decoration:underline;text-underline-offset:2px;}
 
-  /* entrance */
-  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-  @keyframes rise{to{opacity:1;transform:none}}
-
+  @media screen{
+    .wrap{padding-bottom:40px}
+  }
   @media(max-width:560px){
     body{font-size:16px}
     .wrap{padding:0 20px}
     .q{grid-template-columns:32px 1fr;gap:4px 10px}
     .sec-num{font-size:1.8rem}
   }
+  @media print{
+    body{background:#fff}
+    section.block{break-inside:avoid}
+    @page{size:A4;margin:16mm 14mm}
+  }
 </style>
 </head>
 <body>
-<div class="spectrum"></div>
 
 <div class="wrap">
-  <header class="reveal">
+  <header>
     <div class="brand">Acorda pra Física · Lista de Exercícios</div>
     <h1>Óptica <em>Geométrica</em></h1>
     <p class="lead">Da formação das cores à formação de imagens em espelhos esféricos — uma lista de revisão para consolidar os fundamentos da luz.</p>
@@ -148,20 +128,9 @@
       <span class="tag">5 tópicos</span>
       <span class="tag">Conceitual + cálculo</span>
     </div>
-    <div class="actions">
-      <a class="btn btn-primary" href="gabarito.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        Ver gabarito
-      </a>
-      <a class="btn btn-ghost" href="gabarito.html?baixar=1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Baixar gabarito (PDF)
-      </a>
-    </div>
   </header>
 
-  <!-- 1 -->
-  <section class="block reveal">
+  <section class="block">
     <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">Formação de cores (RGB e reflexão/absorção)</h2></div>
     <div class="q"><div class="q-n">1</div><div class="q-body">No sistema aditivo de cores-luz (RGB), determine a cor resultante de: <span class="opts">(a) vermelho + verde &nbsp;(b) verde + azul &nbsp;(c) vermelho + azul &nbsp;(d) vermelho + verde + azul</span></div></div>
     <div class="q"><div class="q-n">2</div><div class="q-body">Um objeto que, sob luz branca, aparece <b>vermelho</b> é levado a uma sala escura e iluminado apenas por luz monocromática <b>verde</b>. De que cor o observador passa a vê-lo? Justifique.</div></div>
@@ -169,8 +138,7 @@
     <div class="q"><div class="q-n">4</div><div class="q-body">Por que uma folha de papel branca pode aparentar praticamente qualquer cor dependendo da luz que a ilumina?</div></div>
   </section>
 
-  <!-- 2 -->
-  <section class="block reveal">
+  <section class="block">
     <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Princípios da óptica geométrica</h2></div>
     <div class="q"><div class="q-n">5</div><div class="q-body"><span class="fx">(Propagação retilínea)</span> Uma câmara escura de orifício tem 25 cm de profundidade. Um poste de 4,0 m de altura, a 20 m do orifício, forma imagem na parede do fundo. Calcule a altura da imagem e diga sua orientação.</div></div>
     <div class="q"><div class="q-n">6</div><div class="q-body">Com base em qual princípio se explica a formação de umbra e penumbra (sombras e eclipses)?</div></div>
@@ -178,8 +146,7 @@
     <div class="q"><div class="q-n">8</div><div class="q-body"><span class="fx">(Independência)</span> Dois feixes de luz se cruzam no ar. Após o cruzamento, suas trajetórias ficam alteradas? Qual princípio justifica a resposta?</div></div>
   </section>
 
-  <!-- 3 -->
-  <section class="block reveal">
+  <section class="block">
     <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Reflexão em espelhos planos</h2></div>
     <div class="q"><div class="q-n">9</div><div class="q-body">Uma pessoa está a 1,5 m de um espelho plano. <span class="opts">(a) A que distância dela está sua imagem? (b) Se ela se aproximar 0,5 m do espelho, qual a nova distância entre ela e sua imagem?</span></div></div>
     <div class="q"><div class="q-n">10</div><div class="q-body">Dois espelhos planos formam um ângulo de 60° entre si. Quantas imagens de um objeto colocado entre eles são formadas?</div></div>
@@ -187,8 +154,7 @@
     <div class="q"><div class="q-n">12</div><div class="q-body">Um objeto está a 40 cm de um espelho plano. O espelho é afastado 10 cm do objeto. De quanto se desloca a imagem e qual a nova distância objeto–imagem?</div></div>
   </section>
 
-  <!-- 4 -->
-  <section class="block reveal">
+  <section class="block">
     <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Índice de refração e Lei de Snell-Descartes</h2></div>
     <div class="q"><div class="q-n">13</div><div class="q-body">A luz se propaga em certo meio com velocidade 2,0 × 10⁸ m/s. Determine o índice de refração desse meio (c = 3,0 × 10⁸ m/s).</div></div>
     <div class="q"><div class="q-n">14</div><div class="q-body">Um raio de luz incide a 45° vindo do ar (n = 1) sobre a superfície de um líquido, refratando-se a 30°. Determine o índice de refração do líquido.</div></div>
@@ -196,8 +162,7 @@
     <div class="q"><div class="q-n">16</div><div class="q-body">Um material transparente de índice de refração √2 está em contato com o ar. Determine o ângulo limite para a reflexão total.</div></div>
   </section>
 
-  <!-- 5 -->
-  <section class="block reveal">
+  <section class="block">
     <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Formação de imagens em espelhos esféricos</h2></div>
     <div class="q"><div class="q-n">17</div><div class="q-body">Um objeto é colocado <b>além do centro de curvatura (C)</b> de um espelho côncavo. Caracterize a imagem (natureza, orientação e tamanho).</div></div>
     <div class="q"><div class="q-n">18</div><div class="q-body">Um espelho côncavo tem raio de curvatura 40 cm. Um objeto é posto a 30 cm do espelho. Determine a posição da imagem e o aumento, e classifique a imagem.</div></div>
@@ -205,8 +170,7 @@
     <div class="q"><div class="q-n">20</div><div class="q-body">Por que espelhos convexos são usados em retrovisores e em câmeras de segurança? Que características a imagem sempre apresenta nesse tipo de espelho?</div></div>
   </section>
 
-  <!-- RECOMENDAÇÃO -->
-  <section class="block reveal">
+  <section class="block">
     <div class="reco">
       <h2>📚 Para se aprofundar</h2>
       <p class="reco-lead">Próximos conteúdos para dar sequência a esta lista.</p>
@@ -226,16 +190,10 @@
   </section>
 
   <footer>
-    <div class="spectrum-mini"></div>
-    Acorda pra Física — material de apoio · Óptica Geométrica
+    <span>Prof. Jonas Pinheiro</span>
+    <a href="https://acordaprafisica.com.br">Acorda pra Física</a>
   </footer>
 </div>
 
-<script>
-  // entrada escalonada das seções
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.animationDelay = (i*0.08)+'s';
-  });
-</script>
 </body>
 </html>

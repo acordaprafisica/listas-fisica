@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Revisão — Ondulatória | 3º EM</title>
+<title>Revisão de Ondulatória — Acorda pra Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Arial&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     font-size: 11pt;
-    background: #f4f6f9;
-    color: #1a1a2e;
+    background: #F7F7F7;
+    color: #14344C;
     padding: 30px 20px;
   }
 
@@ -26,9 +27,8 @@
     overflow: hidden;
   }
 
-  /* CABEÇALHO */
   .header {
-    background: #1F4E79;
+    background: #14344C;
     color: #ffffff;
     padding: 22px 32px 18px 32px;
     display: flex;
@@ -36,177 +36,91 @@
     align-items: flex-start;
     gap: 20px;
   }
-  .header-left h1 {
-    font-size: 15pt;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    margin-bottom: 3px;
-  }
-  .header-left h2 {
-    font-size: 11pt;
-    font-weight: 400;
-    opacity: 0.88;
-    margin-bottom: 2px;
-  }
-  .header-left .subtitulo {
-    font-size: 9.5pt;
-    opacity: 0.72;
-    margin-top: 4px;
-  }
-  .header-right {
-    text-align: right;
-    font-size: 9.5pt;
-    opacity: 0.85;
-    white-space: nowrap;
-  }
+  .header-left h1 { font-family:'Montserrat',sans-serif; font-size: 15pt; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .header-left h2 { font-size: 11pt; font-weight: 400; opacity: 0.88; margin-bottom: 2px; }
+  .header-left .subtitulo { font-size: 9.5pt; opacity: 0.72; margin-top: 4px; }
+  .header-right { text-align: right; font-size: 9.5pt; opacity: 0.85; white-space: nowrap; }
   .header-right p { margin-bottom: 2px; }
 
-  /* FAIXA TEMÁTICA */
   .tema-bar {
-    background: #0e7490;
+    background: #B21119;
     color: #fff;
     text-align: center;
+    font-family:'Montserrat',sans-serif;
     font-size: 9.5pt;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1.5px;
     padding: 6px 0;
     text-transform: uppercase;
   }
 
-  /* DADOS DO ALUNO */
   .dados-aluno {
-    background: #eaf4fb;
-    border-bottom: 2px solid #b6d9ee;
+    background: #F1ECEC;
+    border-bottom: 2px solid rgba(178,17,25,0.25);
     padding: 12px 32px;
     display: flex;
     gap: 32px;
     align-items: center;
   }
-  .campo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10pt;
-    color: #1F4E79;
-    font-weight: 600;
-  }
-  .campo .linha {
-    border-bottom: 1.5px solid #1F4E79;
-    min-width: 160px;
-    height: 16px;
-  }
+  .campo { display: flex; align-items: center; gap: 6px; font-size: 10pt; color: #14344C; font-weight: 600; }
+  .campo .linha { border-bottom: 1.5px solid #14344C; min-width: 160px; height: 16px; }
   .campo.turma .linha { min-width: 70px; }
   .campo.data .linha { min-width: 90px; }
 
-  /* CORPO */
   .corpo { padding: 24px 32px 32px 32px; }
 
-  /* TABELA DE FÓRMULAS */
   .formula-section { margin-bottom: 24px; }
   .formula-section h3 {
+    font-family:'Montserrat',sans-serif;
     font-size: 10.5pt;
     font-weight: 700;
-    color: #1F4E79;
-    border-left: 4px solid #0e7490;
+    color: #14344C;
+    border-left: 4px solid #B21119;
     padding-left: 8px;
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-  .formula-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 10pt;
-  }
-  .formula-table th {
-    background: #1F4E79;
-    color: #fff;
-    padding: 7px 12px;
-    text-align: left;
-    font-size: 9.5pt;
-    font-weight: 600;
-  }
-  .formula-table td {
-    padding: 7px 12px;
-    border-bottom: 1px solid #d8e8f3;
-    vertical-align: middle;
-  }
-  .formula-table tr:nth-child(even) td { background: #eaf4fb; }
-  .formula-table tr:nth-child(odd) td { background: #f7fbfe; }
-  .formula-table .formula { font-weight: 700; color: #0e4d78; font-size: 10.5pt; }
+  .formula-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+  .formula-table th { background: #14344C; color: #fff; padding: 7px 12px; text-align: left; font-size: 9.5pt; font-weight: 600; }
+  .formula-table td { padding: 7px 12px; border-bottom: 1px solid #e0e8ee; vertical-align: middle; }
+  .formula-table tr:nth-child(even) td { background: #F1ECEC; }
+  .formula-table tr:nth-child(odd) td { background: #fafafa; }
+  .formula-table .formula { font-weight: 700; color: #B21119; font-size: 10.5pt; }
 
-  /* BLOCO DE QUESTÕES */
   .bloco { margin-bottom: 22px; }
   .bloco-titulo {
+    font-family:'Montserrat',sans-serif;
     font-size: 9.5pt;
     font-weight: 700;
-    color: #0e7490;
+    color: #B21119;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    border-bottom: 1.5px solid #b6d9ee;
+    border-bottom: 1.5px solid rgba(178,17,25,0.25);
     padding-bottom: 4px;
     margin-bottom: 12px;
   }
 
-  /* QUESTÃO */
-  .questao {
-    border-radius: 7px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    border: 1px solid #cde4f0;
-  }
-  .questao-header {
-    background: #0e7490;
-    color: #ffffff;
-    font-size: 9.5pt;
-    font-weight: 700;
-    padding: 5px 14px;
-    letter-spacing: 0.3px;
-  }
-  .questao-body {
-    background: #f0f8fc;
-    padding: 10px 14px;
-    font-size: 10.5pt;
-    line-height: 1.65;
-    color: #1a1a2e;
-  }
-  .questao-body .destaque {
-    font-weight: 700;
-    color: #0e4d78;
-  }
+  .questao { border-radius: 7px; overflow: hidden; margin-bottom: 10px; border: 1.5px solid rgba(20,52,76,0.12); box-shadow:0 1px 0 rgba(20,52,76,0.05),0 6px 20px -10px rgba(20,52,76,0.12); }
+  .questao-header { background: #14344C; color: #ffffff; font-family:'Montserrat',sans-serif; font-size: 9.5pt; font-weight: 700; padding: 5px 14px; letter-spacing: 0.3px; }
+  .questao-body { background: #fafafa; padding: 10px 14px; font-size: 10.5pt; line-height: 1.65; color: #14344C; }
+  .questao-body .destaque { font-weight: 700; color: #B21119; }
 
-  /* ALTERNATIVAS MC */
-  .alternativas {
-    margin-top: 7px;
-    padding-left: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .alternativa {
-    font-size: 10pt;
-    color: #1a1a2e;
-    padding: 1px 0;
-  }
+  .alternativas { margin-top: 7px; padding-left: 6px; display: flex; flex-direction: column; gap: 3px; }
+  .alternativa { font-size: 10pt; color: #14344C; padding: 1px 0; }
 
-  /* DIVISOR */
-  .divisor {
-    border: none;
-    border-top: 1.5px dashed #b6d9ee;
-    margin: 20px 0;
-  }
+  .divisor { border: none; border-top: 1.5px dashed rgba(20,52,76,0.15); margin: 20px 0; }
 
-  /* RODAPÉ */
   .footer {
-    background: #1F4E79;
+    background: #14344C;
     color: #c8dff0;
     font-size: 8.5pt;
     text-align: center;
     padding: 10px 32px;
     letter-spacing: 0.3px;
   }
+  .footer a { color: #ECC4CC; text-decoration: underline; text-underline-offset: 2px; }
 
-  /* PRINT */
   @media print {
     body { background: #fff; padding: 0; }
     .page { box-shadow: none; border-radius: 0; }
@@ -219,96 +133,48 @@
 <body>
 <div class="page">
 
-  <!-- CABEÇALHO -->
   <div class="header">
     <div class="header-left">
-      <h1>FÍSICA &mdash; 3º Ano do Ensino Médio</h1>
-      <h2>Lista de Revisão &mdash; Ondulatória</h2>
+      <h1>FÍSICA — Ondulatória</h1>
+      <h2>Lista de Revisão</h2>
       <p class="subtitulo">Propagação &bull; Interferência &bull; Velocidade de Ondas &bull; Ondas Estacionárias</p>
     </div>
     <div class="header-right">
       <p><strong>Prof. Jonas Pinheiro</strong></p>
-      <p>2º Trimestre &mdash; 2025</p>
       <p>20 Questões</p>
     </div>
   </div>
 
-  <!-- FAIXA TEMÁTICA -->
-  <div class="tema-bar">&#127754; Ondulatória — Lista de Revisão</div>
+  <div class="tema-bar">Ondulatória — Lista de Revisão</div>
 
-  <!-- DADOS DO ALUNO -->
   <div class="dados-aluno">
-    <div class="campo">
-      <span>Nome:</span>
-      <div class="linha"></div>
-    </div>
-    <div class="campo turma">
-      <span>Turma:</span>
-      <div class="linha"></div>
-    </div>
-    <div class="campo data">
-      <span>Data:</span>
-      <div class="linha"></div>
-    </div>
+    <div class="campo"><span>Nome:</span><div class="linha"></div></div>
+    <div class="campo turma"><span>Turma:</span><div class="linha"></div></div>
+    <div class="campo data"><span>Data:</span><div class="linha"></div></div>
   </div>
 
-  <!-- CORPO -->
   <div class="corpo">
 
-    <!-- FÓRMULAS -->
     <div class="formula-section">
-      <h3>📐 Fórmulas de Referência</h3>
+      <h3>Fórmulas de Referência</h3>
       <table class="formula-table">
         <thead>
-          <tr>
-            <th>Grandeza / Relação</th>
-            <th>Fórmula</th>
-            <th>Legenda</th>
-          </tr>
+          <tr><th>Grandeza / Relação</th><th>Fórmula</th><th>Legenda</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Equação fundamental das ondas</td>
-            <td class="formula">v = f · λ</td>
-            <td>v: velocidade (m/s) &nbsp;|&nbsp; f: frequência (Hz) &nbsp;|&nbsp; λ: comprimento de onda (m)</td>
-          </tr>
-          <tr>
-            <td>Período e frequência</td>
-            <td class="formula">T = 1 / f</td>
-            <td>T: período (s)</td>
-          </tr>
-          <tr>
-            <td>Velocidade em cordas</td>
-            <td class="formula">v = √(F / μ)</td>
-            <td>F: força de tração (N) &nbsp;|&nbsp; μ: densidade linear (kg/m)</td>
-          </tr>
-          <tr>
-            <td>Superposição de pulsos</td>
-            <td class="formula">y<sub>res</sub> = y<sub>1</sub> + y<sub>2</sub></td>
-            <td>Princípio da superposição (soma algébrica)</td>
-          </tr>
-          <tr>
-            <td>Onda estacionária — comprimento</td>
-            <td class="formula">L = n · (λ / 2)</td>
-            <td>n: número de segmentos (ventres)</td>
-          </tr>
-          <tr>
-            <td>Distância crista–vale</td>
-            <td class="formula">d<sub>c–v</sub> = λ / 2</td>
-            <td>Crista e vale adjacentes estão separados por meio comprimento de onda</td>
-          </tr>
-          <tr>
-            <td>Velocidade da luz no vácuo</td>
-            <td class="formula">c = 3 × 10⁸ m/s</td>
-            <td>Toda onda eletromagnética no vácuo</td>
-          </tr>
+          <tr><td>Equação fundamental das ondas</td><td class="formula">v = f · λ</td><td>v: velocidade (m/s) | f: frequência (Hz) | λ: comprimento de onda (m)</td></tr>
+          <tr><td>Período e frequência</td><td class="formula">T = 1 / f</td><td>T: período (s)</td></tr>
+          <tr><td>Velocidade em cordas</td><td class="formula">v = √(F / μ)</td><td>F: força de tração (N) | μ: densidade linear (kg/m)</td></tr>
+          <tr><td>Superposição de pulsos</td><td class="formula">y<sub>res</sub> = y<sub>1</sub> + y<sub>2</sub></td><td>Princípio da superposição (soma algébrica)</td></tr>
+          <tr><td>Onda estacionária — comprimento</td><td class="formula">L = n · (λ / 2)</td><td>n: número de segmentos (ventres)</td></tr>
+          <tr><td>Distância crista–vale</td><td class="formula">d<sub>c–v</sub> = λ / 2</td><td>Crista e vale adjacentes estão separados por meio comprimento de onda</td></tr>
+          <tr><td>Velocidade da luz no vácuo</td><td class="formula">c = 3 × 10⁸ m/s</td><td>Toda onda eletromagnética no vácuo</td></tr>
         </tbody>
       </table>
     </div>
 
     <hr class="divisor">
 
-    <!-- BLOCO 1 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 1 — Equação Fundamental e Período</div>
 
@@ -363,7 +229,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 2 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 2 — Velocidade em Cordas: v = √(F/μ)</div>
 
@@ -416,7 +281,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 3 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 3 — Superposição de Pulsos</div>
 
@@ -442,7 +306,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 4 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 4 — Ondas Eletromagnéticas e Aplicações</div>
 
@@ -475,7 +338,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 5 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 5 — Geometria das Ondas e Ondas Estacionárias</div>
 
@@ -510,7 +372,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 6 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 6 — Questões Conceituais</div>
 
@@ -537,13 +398,12 @@
       </div>
     </div>
 
-  </div><!-- fim corpo -->
-
-  <!-- RODAPÉ -->
-  <div class="footer">
-    Prof. Jonas Pinheiro &nbsp;&bull;&nbsp; Física — 3º Ano do Ensino Médio &nbsp;&bull;&nbsp; Lista de Revisão — Ondulatória &nbsp;&bull;&nbsp; 2º Trimestre 2025
   </div>
 
-</div><!-- fim page -->
+  <div class="footer">
+    Prof. Jonas Pinheiro &nbsp;&bull;&nbsp; <a href="https://acordaprafisica.com.br">Acorda pra Física</a> &nbsp;&bull;&nbsp; Lista de Revisão — Ondulatória
+  </div>
+
+</div>
 </body>
 </html>

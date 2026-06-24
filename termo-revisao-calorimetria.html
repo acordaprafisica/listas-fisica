@@ -3,15 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Revisão — Calorimetria | 1º EM</title>
+<title>Revisão — Calorimetria | Acorda pra Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --navy: #14344C;
+    --red: #B21119;
+    --red-soft: #F1ECEC;
+    --steel: #84939E;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'DM Sans', Arial, sans-serif;
     font-size: 11pt;
-    background: #f4f6f9;
-    color: #1a1a2e;
+    background: #F7F7F7;
+    color: var(--navy);
     padding: 30px 20px;
   }
 
@@ -20,13 +30,12 @@
     margin: 0 auto;
     background: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 2px 18px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 18px rgba(20,52,76,0.12);
     overflow: hidden;
   }
 
-  /* CABEÇALHO */
   .header {
-    background: #1F4E79;
+    background: var(--navy);
     color: #ffffff;
     padding: 22px 32px 18px 32px;
     display: flex;
@@ -34,48 +43,46 @@
     align-items: flex-start;
     gap: 20px;
   }
-  .header-left h1 { font-size: 15pt; font-weight: 700; margin-bottom: 3px; }
+  .header-left h1 { font-family: 'Montserrat', sans-serif; font-size: 15pt; font-weight: 800; margin-bottom: 3px; }
   .header-left h2 { font-size: 11pt; font-weight: 400; opacity: 0.88; margin-bottom: 2px; }
   .header-left .subtitulo { font-size: 9.5pt; opacity: 0.72; margin-top: 4px; }
   .header-right { text-align: right; font-size: 9.5pt; opacity: 0.85; white-space: nowrap; }
   .header-right p { margin-bottom: 2px; }
 
-  /* FAIXA TEMÁTICA — vermelho/termal para calorimetria */
   .tema-bar {
-    background: #b91c1c;
+    background: var(--red);
     color: #fff;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
     font-size: 9.5pt;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1.5px;
     padding: 6px 0;
     text-transform: uppercase;
   }
 
-  /* DADOS DO ALUNO */
   .dados-aluno {
-    background: #fef2f2;
-    border-bottom: 2px solid #fca5a5;
+    background: var(--red-soft);
+    border-bottom: 2px solid rgba(178,17,25,0.25);
     padding: 12px 32px;
     display: flex;
     gap: 32px;
     align-items: center;
   }
-  .campo { display: flex; align-items: center; gap: 6px; font-size: 10pt; color: #7f1d1d; font-weight: 600; }
-  .campo .linha { border-bottom: 1.5px solid #b91c1c; min-width: 160px; height: 16px; }
+  .campo { display: flex; align-items: center; gap: 6px; font-size: 10pt; color: var(--navy); font-weight: 600; }
+  .campo .linha { border-bottom: 1.5px solid var(--red); min-width: 160px; height: 16px; }
   .campo.turma .linha { min-width: 70px; }
   .campo.data .linha { min-width: 90px; }
 
-  /* CORPO */
   .corpo { padding: 24px 32px 32px 32px; }
 
-  /* TABELA DE FÓRMULAS */
   .formula-section { margin-bottom: 22px; }
   .formula-section h3 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 10.5pt;
     font-weight: 700;
-    color: #7f1d1d;
-    border-left: 4px solid #b91c1c;
+    color: var(--navy);
+    border-left: 4px solid var(--red);
     padding-left: 8px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -83,48 +90,48 @@
   }
   .formula-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
   .formula-table th {
-    background: #7f1d1d;
+    background: var(--navy);
     color: #fff;
     padding: 7px 12px;
     text-align: left;
     font-size: 9.5pt;
     font-weight: 600;
   }
-  .formula-table td { padding: 7px 12px; border-bottom: 1px solid #fecaca; vertical-align: middle; }
-  .formula-table tr:nth-child(even) td { background: #fef2f2; }
-  .formula-table tr:nth-child(odd) td { background: #fff8f8; }
-  .formula-table .formula { font-weight: 700; color: #7f1d1d; font-size: 10.5pt; }
+  .formula-table td { padding: 7px 12px; border-bottom: 1px solid rgba(178,17,25,0.15); vertical-align: middle; }
+  .formula-table tr:nth-child(even) td { background: var(--red-soft); }
+  .formula-table tr:nth-child(odd) td { background: #fff; }
+  .formula-table .formula { font-weight: 700; color: var(--red); font-size: 10.5pt; }
 
-  /* TABELA DE CALORES ESPECÍFICOS */
   .aux-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 8px; }
-  .aux-table th { background: #fca5a5; color: #7f1d1d; padding: 5px 10px; text-align: left; font-weight: 700; }
-  .aux-table td { padding: 5px 10px; border-bottom: 1px solid #fecaca; }
-  .aux-table tr:nth-child(even) td { background: #fef2f2; }
-  .aux-table tr:nth-child(odd) td { background: #fff8f8; }
+  .aux-table th { background: rgba(178,17,25,0.18); color: var(--navy); padding: 5px 10px; text-align: left; font-weight: 700; }
+  .aux-table td { padding: 5px 10px; border-bottom: 1px solid rgba(178,17,25,0.12); }
+  .aux-table tr:nth-child(even) td { background: var(--red-soft); }
+  .aux-table tr:nth-child(odd) td { background: #fff; }
 
-  /* BLOCO DE QUESTÕES */
   .bloco { margin-bottom: 20px; }
   .bloco-titulo {
+    font-family: 'Montserrat', sans-serif;
     font-size: 9.5pt;
     font-weight: 700;
-    color: #b91c1c;
+    color: var(--red);
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    border-bottom: 1.5px solid #fca5a5;
+    border-bottom: 1.5px solid rgba(178,17,25,0.25);
     padding-bottom: 4px;
     margin-bottom: 12px;
   }
 
-  /* QUESTÃO */
   .questao {
     border-radius: 7px;
     overflow: hidden;
     margin-bottom: 10px;
-    border: 1px solid #fca5a5;
+    border: 1.5px solid rgba(178,17,25,0.15);
+    box-shadow: 0 1px 0 rgba(20,52,76,0.07), 0 8px 24px -12px rgba(20,52,76,0.12);
   }
   .questao-header {
-    background: #b91c1c;
+    background: var(--red);
     color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
     font-size: 9.5pt;
     font-weight: 700;
     padding: 5px 14px;
@@ -133,15 +140,14 @@
     gap: 8px;
   }
   .questao-body {
-    background: #fff8f8;
+    background: #fff;
     padding: 11px 14px;
     font-size: 10.5pt;
     line-height: 1.7;
-    color: #1a1a2e;
+    color: var(--navy);
   }
-  .destaque { font-weight: 700; color: #7f1d1d; }
+  .destaque { font-weight: 700; color: var(--navy); }
 
-  /* TAGS */
   .tag {
     display: inline-block;
     font-size: 7.5pt;
@@ -155,30 +161,30 @@
   .tag-multietapa { background: #bae6fd; color: #0c4a6e; }
   .tag-massa      { background: #ddd6fe; color: #3b0764; }
 
-  /* CAIXA DE ETAPAS */
   .etapas {
-    background: #fef2f2;
-    border: 1px dashed #fca5a5;
+    background: var(--red-soft);
+    border: 1px dashed rgba(178,17,25,0.30);
     border-radius: 6px;
     padding: 8px 12px;
     font-size: 9.5pt;
-    color: #7f1d1d;
+    color: var(--navy);
     margin-top: 8px;
     line-height: 1.7;
   }
 
-  /* DIVISOR */
-  .divisor { border: none; border-top: 1.5px dashed #fca5a5; margin: 18px 0; }
+  .divisor { border: none; border-top: 1.5px dashed rgba(178,17,25,0.22); margin: 18px 0; }
 
-  /* RODAPÉ */
   .footer {
-    background: #1F4E79;
-    color: #c8dff0;
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
     font-size: 8.5pt;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 32px;
     letter-spacing: 0.3px;
   }
+  .footer a { color: rgba(255,255,255,0.90); text-decoration: underline; text-underline-offset: 2px; }
 
   @media print {
     body { background: #fff; padding: 0; }
@@ -192,34 +198,28 @@
 <body>
 <div class="page">
 
-  <!-- CABEÇALHO -->
   <div class="header">
     <div class="header-left">
-      <h1>FÍSICA &mdash; 1º Ano do Ensino Médio</h1>
+      <h1>FÍSICA &mdash; Calorimetria</h1>
       <h2>Lista de Revisão &mdash; Calorimetria</h2>
       <p class="subtitulo">Escalas Termométricas &bull; Calor Sensível &bull; Calor Latente &bull; Equilíbrio Térmico</p>
     </div>
     <div class="header-right">
       <p><strong>Prof. Jonas Pinheiro</strong></p>
-      <p>2º Trimestre &mdash; 2025</p>
       <p>10 Questões</p>
     </div>
   </div>
 
-  <!-- FAIXA TEMÁTICA -->
   <div class="tema-bar">🌡️ Calorimetria — Lista de Revisão</div>
 
-  <!-- DADOS DO ALUNO -->
   <div class="dados-aluno">
     <div class="campo"><span>Nome:</span><div class="linha"></div></div>
     <div class="campo turma"><span>Turma:</span><div class="linha"></div></div>
     <div class="campo data"><span>Data:</span><div class="linha"></div></div>
   </div>
 
-  <!-- CORPO -->
   <div class="corpo">
 
-    <!-- FÓRMULAS -->
     <div class="formula-section">
       <h3>📐 Fórmulas de Referência</h3>
       <table class="formula-table">
@@ -261,7 +261,7 @@
       </table>
 
       <br>
-      <p style="font-size:9.5pt; color:#7f1d1d; font-weight:700; margin-bottom:5px;">📋 Constantes Térmicas</p>
+      <p style="font-family:'Montserrat',sans-serif; font-size:9.5pt; color:var(--navy); font-weight:700; margin-bottom:5px;">📋 Constantes Térmicas</p>
       <table class="aux-table">
         <thead>
           <tr><th>Substância</th><th>Calor específico c (cal/g·°C)</th><th>Calor latente (cal/g)</th></tr>
@@ -277,7 +277,6 @@
 
     <hr class="divisor">
 
-    <!-- BLOCO 1 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 1 — Conversão de Escalas Termométricas</div>
 
@@ -313,7 +312,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 2 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 2 — Calor Sensível: Q = m · c · ΔT</div>
 
@@ -338,7 +336,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 3 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 3 — Calor Latente: Q = m · L</div>
 
@@ -363,7 +360,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 4 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 4 — Equilíbrio Térmico</div>
 
@@ -388,7 +384,6 @@
       </div>
     </div>
 
-    <!-- BLOCO 5 -->
     <div class="bloco">
       <div class="bloco-titulo">Bloco 5 — Processo Multietapa</div>
 
@@ -410,11 +405,11 @@
       </div>
     </div>
 
-  </div><!-- fim corpo -->
+  </div>
 
-  <!-- RODAPÉ -->
   <div class="footer">
-    Prof. Jonas Pinheiro &nbsp;&bull;&nbsp; Física — 1º Ano do Ensino Médio &nbsp;&bull;&nbsp; Lista de Revisão — Calorimetria &nbsp;&bull;&nbsp; 2º Trimestre 2025
+    <span>Prof. Jonas Pinheiro</span>
+    <a href="https://acordaprafisica.com.br">Acorda pra Física</a>
   </div>
 
 </div>

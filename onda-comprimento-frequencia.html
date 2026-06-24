@@ -3,163 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Ondulatória — 3º Ano</title>
+<title>Lista de Ondulatória — Frequência e Comprimento de Onda — Acorda pra Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --azul:#1F4E79;        /* cabeçalhos de seção */
-    --teal:#0E7C7B;        /* cor temática: ondas */
-    --teal-claro:#E3F2F1;  /* fundo tabela/enunciado */
-    --cinza:#F4F6F7;       /* fundo enunciado */
+    --navy:#14344C;
+    --red:#B21119;
+    --red-soft:#F1ECEC;
+    --cinza:#F4F6F7;
     --borda:#D5DBDB;
+    --steel:#84939E;
   }
-  *{ box-sizing:border-box; }
-  body{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:11pt;
-    color:#1a1a1a;
-    line-height:1.5;
-    margin:0;
-    padding:28px 34px;
-    background:#fff;
-  }
+  *{box-sizing:border-box;}
+  body{font-family:'DM Sans',Arial,sans-serif;font-size:11pt;color:var(--navy);line-height:1.5;margin:0;padding:28px 34px;background:#F7F7F7;}
 
-  /* Cabeçalho */
-  .cabecalho{
-    border-bottom:3px solid var(--teal);
-    padding-bottom:10px;
-    margin-bottom:14px;
-  }
-  .cabecalho .disciplina{
-    color:var(--azul);
-    font-size:15pt;
-    font-weight:bold;
-    letter-spacing:.3px;
-  }
-  .cabecalho .prof{
-    color:var(--teal);
-    font-size:10.5pt;
-    font-weight:bold;
-    margin-top:2px;
-  }
-  .titulo-lista{
-    color:var(--azul);
-    font-size:13pt;
-    font-weight:bold;
-    margin:6px 0 2px;
-  }
-  .subtitulo{
-    font-size:10pt;
-    color:#555;
-  }
+  .cabecalho{border-bottom:3px solid var(--red);padding-bottom:10px;margin-bottom:14px;}
+  .cabecalho .disciplina{color:var(--navy);font-family:'Montserrat',sans-serif;font-size:15pt;font-weight:800;letter-spacing:.3px;}
+  .cabecalho .prof{color:var(--red);font-family:'Montserrat',sans-serif;font-size:10.5pt;font-weight:700;margin-top:2px;}
+  .titulo-lista{color:var(--navy);font-family:'Montserrat',sans-serif;font-size:13pt;font-weight:700;margin:6px 0 2px;}
+  .subtitulo{font-size:10pt;color:var(--steel);}
 
-  /* Campos do aluno */
-  .identificacao{
-    display:flex;
-    gap:14px;
-    margin:14px 0 6px;
-    font-size:10.5pt;
-  }
-  .identificacao .campo{ display:flex; align-items:flex-end; gap:6px; }
-  .identificacao .campo.nome{ flex:2; }
-  .identificacao .campo.turma{ flex:1; }
-  .identificacao .campo.data{ flex:1; }
-  .identificacao .rotulo{ font-weight:bold; color:var(--azul); white-space:nowrap; }
-  .identificacao .linha{
-    flex:1;
-    border-bottom:1px solid #999;
-    height:1.1em;
-  }
+  .identificacao{display:flex;gap:14px;margin:14px 0 6px;font-size:10.5pt;}
+  .identificacao .campo{display:flex;align-items:flex-end;gap:6px;}
+  .identificacao .campo.nome{flex:2;}
+  .identificacao .campo.turma{flex:1;}
+  .identificacao .campo.data{flex:1;}
+  .identificacao .rotulo{font-weight:bold;color:var(--navy);white-space:nowrap;}
+  .identificacao .linha{flex:1;border-bottom:1px solid #999;height:1.1em;}
 
-  /* Tabela de fórmulas */
-  .formulas{
-    margin:14px 0 18px;
-    border:1px solid var(--borda);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .formulas h2{
-    background:var(--azul);
-    color:#fff;
-    font-size:11pt;
-    margin:0;
-    padding:7px 12px;
-    font-weight:bold;
-  }
-  table{ width:100%; border-collapse:collapse; }
-  .formulas td{
-    padding:7px 12px;
-    font-size:10.5pt;
-    border-bottom:1px solid var(--borda);
-  }
-  .formulas tr:nth-child(even){ background:var(--teal-claro); }
-  .formulas tr:last-child td{ border-bottom:none; }
-  .formulas .simbolo{
-    width:34%;
-    font-family:"Cambria Math", Georgia, serif;
-    font-style:italic;
-    color:var(--teal);
-    font-weight:bold;
-    font-size:11.5pt;
-  }
-  .formulas .legenda{ color:#333; }
+  .formulas{margin:14px 0 18px;border:1.5px solid rgba(20,52,76,0.15);border-radius:8px;overflow:hidden;}
+  .formulas h2{background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:11pt;margin:0;padding:7px 12px;font-weight:700;}
+  table{width:100%;border-collapse:collapse;}
+  .formulas td{padding:7px 12px;font-size:10.5pt;border-bottom:1px solid var(--borda);}
+  .formulas tr:nth-child(even){background:var(--red-soft);}
+  .formulas tr:last-child td{border-bottom:none;}
+  .formulas .simbolo{width:34%;font-family:"Cambria Math",Georgia,serif;font-style:italic;color:var(--red);font-weight:bold;font-size:11.5pt;}
+  .formulas .legenda{color:#333;}
 
-  /* Exercícios */
-  .exercicio{
-    margin-bottom:14px;
-    border:1px solid var(--borda);
-    border-radius:6px;
-    overflow:hidden;
-    break-inside:avoid;
-    page-break-inside:avoid;
-  }
-  .exercicio .titulo{
-    background:var(--teal);
-    color:#fff;
-    font-weight:bold;
-    font-size:10.5pt;
-    padding:6px 12px;
-  }
-  .exercicio .titulo .num{
-    display:inline-block;
-    min-width:1.4em;
-  }
-  .exercicio .enunciado{
-    background:var(--cinza);
-    padding:10px 14px;
-    font-size:11pt;
-    text-align:justify;
-  }
-  .exercicio .enunciado .itens{
-    margin:6px 0 0;
-    padding-left:4px;
-  }
-  .exercicio .enunciado .itens span{ display:block; margin-top:2px; }
-  b.dado{ color:var(--azul); }
+  .exercicio{margin-bottom:14px;border:1.5px solid rgba(20,52,76,0.12);border-radius:8px;overflow:hidden;break-inside:avoid;page-break-inside:avoid;box-shadow:0 1px 0 rgba(20,52,76,0.07),0 8px 24px -12px rgba(20,52,76,0.14);}
+  .exercicio .titulo{background:var(--red);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10.5pt;padding:6px 12px;}
+  .exercicio .titulo .num{display:inline-block;min-width:1.4em;}
+  .exercicio .enunciado{background:#fff;padding:10px 14px;font-size:11pt;text-align:justify;}
+  .exercicio .enunciado .itens{margin:6px 0 0;padding-left:4px;}
+  .exercicio .enunciado .itens span{display:block;margin-top:2px;}
+  b.dado{color:var(--navy);}
 
-  .rodape{
-    margin-top:18px;
-    padding-top:8px;
-    border-top:1px solid var(--borda);
-    font-size:9pt;
-    color:#777;
-    display:flex;
-    justify-content:space-between;
-  }
+  .rodape{margin-top:18px;padding-top:8px;border-top:1.5px solid var(--borda);font-size:9pt;color:var(--steel);display:flex;justify-content:space-between;}
+  .rodape a{color:var(--red);text-decoration:underline;text-underline-offset:2px;}
 
-  /* Impressão */
-  @page{ size:A4; margin:16mm 14mm; }
-  @media print{
-    body{ padding:0; font-size:11pt; }
-    .exercicio, .formulas{ break-inside:avoid; page-break-inside:avoid; }
-    .cabecalho{ break-after:avoid; }
-  }
+  @page{size:A4;margin:16mm 14mm;}
+  @media print{body{padding:0;font-size:11pt;background:#fff;}.exercicio,.formulas{break-inside:avoid;page-break-inside:avoid;}.cabecalho{break-after:avoid;}}
 </style>
 </head>
 <body>
 
   <div class="cabecalho">
     <div class="disciplina">Física — Ondulatória</div>
-    <div class="prof">Prof. Jonas Pinheiro &nbsp;•&nbsp; 3º Ano — Ensino Médio</div>
+    <div class="prof">Prof. Jonas Pinheiro</div>
     <div class="titulo-lista">Lista de Exercícios: Ondas, Frequência e Comprimento de Onda</div>
     <div class="subtitulo">Questões dissertativas — desenvolva todos os cálculos e justifique as respostas. Adote v<sub>som</sub> = 340 m/s no ar quando não indicado.</div>
   </div>
@@ -173,26 +75,11 @@
   <div class="formulas">
     <h2>Fórmulas de referência</h2>
     <table>
-      <tr>
-        <td class="simbolo">v = λ · f</td>
-        <td class="legenda">Velocidade de propagação = comprimento de onda × frequência</td>
-      </tr>
-      <tr>
-        <td class="simbolo">f = 1 / T</td>
-        <td class="legenda">Frequência = inverso do período</td>
-      </tr>
-      <tr>
-        <td class="simbolo">v = λ / T</td>
-        <td class="legenda">Velocidade a partir do comprimento de onda e do período</td>
-      </tr>
-      <tr>
-        <td class="simbolo">c = λ · f</td>
-        <td class="legenda">Ondas eletromagnéticas no vácuo, com c = 3 × 10<sup>8</sup> m/s</td>
-      </tr>
-      <tr>
-        <td class="simbolo">v = Δs / Δt</td>
-        <td class="legenda">Velocidade média (útil em problemas de eco e propagação)</td>
-      </tr>
+      <tr><td class="simbolo">v = λ · f</td><td class="legenda">Velocidade de propagação = comprimento de onda × frequência</td></tr>
+      <tr><td class="simbolo">f = 1 / T</td><td class="legenda">Frequência = inverso do período</td></tr>
+      <tr><td class="simbolo">v = λ / T</td><td class="legenda">Velocidade a partir do comprimento de onda e do período</td></tr>
+      <tr><td class="simbolo">c = λ · f</td><td class="legenda">Ondas eletromagnéticas no vácuo, com c = 3 × 10<sup>8</sup> m/s</td></tr>
+      <tr><td class="simbolo">v = Δs / Δt</td><td class="legenda">Velocidade média (útil em problemas de eco e propagação)</td></tr>
     </table>
   </div>
 
@@ -307,8 +194,8 @@
   </div>
 
   <div class="rodape">
-    <span>Prof. Jonas Pinheiro — Física</span>
-    <span>Ondulatória • 3º Ano EM</span>
+    <span>Prof. Jonas Pinheiro</span>
+    <a href="https://acordaprafisica.com.br">Acorda pra Física</a>
   </div>
 
 </body>

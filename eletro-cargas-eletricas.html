@@ -3,138 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Cargas Elétricas — 2ª série EM</title>
+<title>Lista de Cargas Elétricas — Acorda pra Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --azul:#1F4E79;        /* cabeçalhos das seções */
-    --eletr:#7E22CE;       /* cor temática: eletricidade */
-    --eletr-claro:#F3E8FF; /* fundo de destaque */
-    --cinza:#F4F4F4;       /* fundo do enunciado */
+    --navy:#14344C;
+    --red:#B21119;
+    --red-soft:#F1ECEC;
+    --cinza:#F4F4F4;
     --linha:#D9D9D9;
-    --texto:#1a1a1a;
+    --steel:#84939E;
   }
   *{box-sizing:border-box;}
   body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'DM Sans', Arial, sans-serif;
     font-size:11pt;
-    color:var(--texto);
+    color:var(--navy);
     line-height:1.45;
     margin:0 auto;
-    background:#fff;
+    background:#F7F7F7;
     padding:32px 40px;
     max-width:820px;
   }
   header.topo{
-    border-bottom:3px solid var(--azul);
+    border-bottom:3px solid var(--navy);
     padding-bottom:12px;
     margin-bottom:16px;
   }
   .topo .disciplina{
+    font-family:'Montserrat',sans-serif;
     font-size:9.5pt;
     letter-spacing:1px;
     text-transform:uppercase;
-    color:var(--eletr);
-    font-weight:bold;
+    color:var(--red);
+    font-weight:700;
   }
   .topo h1{
+    font-family:'Montserrat',sans-serif;
     font-size:17pt;
-    color:var(--azul);
+    color:var(--navy);
     margin:4px 0 2px;
+    font-weight:800;
   }
-  .topo .prof{
-    font-size:10pt;
-    color:#555;
-  }
+  .topo .prof{font-size:10pt;color:var(--steel);}
   .ident{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px 24px;
-    margin:14px 0 18px;
-    font-size:10.5pt;
+    display:flex;flex-wrap:wrap;gap:8px 24px;
+    margin:14px 0 18px;font-size:10.5pt;
   }
   .ident .campo{flex:1 1 auto;}
   .ident .linha-preench{
-    display:inline-block;
-    border-bottom:1px solid #888;
-    min-width:120px;
+    display:inline-block;border-bottom:1px solid #888;min-width:120px;
   }
   .ident .campo.nome .linha-preench{min-width:280px;}
 
   h2.secao{
-    font-size:12pt;
-    color:var(--azul);
-    border-left:5px solid var(--eletr);
-    padding:4px 0 4px 10px;
-    margin:22px 0 10px;
-    background:linear-gradient(90deg,var(--eletr-claro),transparent);
+    font-family:'Montserrat',sans-serif;
+    font-size:12pt;color:var(--navy);
+    border-left:5px solid var(--red);
+    padding:4px 0 4px 10px;margin:22px 0 10px;
+    background:linear-gradient(90deg,var(--red-soft),transparent);
+    font-weight:700;
   }
 
-  table.formulas{
-    width:100%;
-    border-collapse:collapse;
-    margin:6px 0 4px;
-    font-size:10.5pt;
-  }
-  table.formulas caption{
-    text-align:left;
-    font-weight:bold;
-    color:var(--azul);
-    padding-bottom:5px;
-  }
-  table.formulas th{
-    background:var(--azul);
-    color:#fff;
-    text-align:left;
-    padding:6px 10px;
-    font-size:10pt;
-  }
-  table.formulas td{
-    padding:6px 10px;
-    border-bottom:1px solid var(--linha);
-  }
+  table.formulas{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:10.5pt;}
+  table.formulas caption{text-align:left;font-weight:bold;color:var(--navy);padding-bottom:5px;font-family:'Montserrat',sans-serif;}
+  table.formulas th{background:var(--navy);color:#fff;text-align:left;padding:6px 10px;font-size:10pt;}
+  table.formulas td{padding:6px 10px;border-bottom:1px solid var(--linha);}
   table.formulas tr:nth-child(even) td{background:var(--cinza);}
-  table.formulas .form{
-    font-family:"Cambria Math", Georgia, serif;
-    font-weight:bold;
-    color:var(--eletr);
-    white-space:nowrap;
-  }
+  table.formulas .form{font-family:"Cambria Math",Georgia,serif;font-weight:bold;color:var(--red);white-space:nowrap;}
 
   .exercicio{
-    margin:0 0 12px;
-    border:1px solid var(--linha);
-    border-radius:6px;
-    overflow:hidden;
-    page-break-inside:avoid;
+    margin:0 0 12px;border:1.5px solid rgba(20,52,76,0.12);
+    border-radius:8px;overflow:hidden;page-break-inside:avoid;
+    box-shadow:0 1px 0 rgba(20,52,76,0.07),0 8px 24px -12px rgba(20,52,76,0.14);
   }
   .exercicio .cab{
-    background:var(--eletr);
-    color:#fff;
-    font-weight:bold;
-    padding:5px 12px;
-    font-size:10.5pt;
+    background:var(--red);color:#fff;font-weight:bold;
+    padding:5px 12px;font-size:10.5pt;font-family:'Montserrat',sans-serif;
   }
-  .exercicio .corpo{
-    background:var(--cinza);
-    padding:9px 12px;
-  }
+  .exercicio .corpo{background:#fff;padding:9px 12px;}
   .exercicio .corpo p{margin:0;}
-  .exercicio .itens{margin:6px 0 0; padding-left:22px;}
+  .exercicio .itens{margin:6px 0 0;padding-left:22px;}
   .exercicio .itens li{margin:2px 0;}
-  .dado{font-weight:bold; color:var(--azul);}
+  .dado{font-weight:bold;color:var(--navy);}
 
   footer.rodape{
-    margin-top:22px;
-    border-top:2px solid var(--azul);
-    padding-top:8px;
-    font-size:9pt;
-    color:#666;
-    display:flex;
-    justify-content:space-between;
+    margin-top:22px;border-top:2px solid var(--navy);
+    padding-top:8px;font-size:9pt;color:var(--steel);
+    display:flex;justify-content:space-between;
   }
+  footer.rodape a{color:var(--red);text-decoration:underline;text-underline-offset:2px;}
 
   @media print{
-    body{padding:0; font-size:10.5pt;}
+    body{padding:0;font-size:10.5pt;background:#fff;}
     @page{margin:1.4cm;}
     .exercicio{box-shadow:none;}
   }
@@ -145,7 +108,7 @@
 <header class="topo">
   <div class="disciplina">Física &middot; Eletrostática</div>
   <h1>Cargas elétricas e notação científica</h1>
-  <div class="prof">Prof. Jonas Pinheiro &nbsp;|&nbsp; 2ª série — Ensino Médio</div>
+  <div class="prof">Prof. Jonas Pinheiro</div>
 </header>
 
 <div class="ident">
@@ -165,7 +128,7 @@
     <tr><td>Número de elétrons</td><td class="form">n = q / e</td><td>obtido isolando n na relação acima</td></tr>
   </tbody>
 </table>
-<p style="font-size:9.5pt;color:#666;margin:2px 0 0;">Atenção à notação científica: ao <strong>multiplicar</strong>, somam-se os expoentes de 10; ao <strong>dividir</strong>, subtraem-se. A unidade de carga é o coulomb (C).</p>
+<p style="font-size:9.5pt;color:var(--steel);margin:2px 0 0;">Atenção à notação científica: ao <strong>multiplicar</strong>, somam-se os expoentes de 10; ao <strong>dividir</strong>, subtraem-se. A unidade de carga é o coulomb (C).</p>
 
 <h2 class="secao">Bloco 1 — Conceitos de carga elétrica</h2>
 
@@ -238,8 +201,8 @@
 </div>
 
 <footer class="rodape">
-  <span>Prof. Jonas Pinheiro — Física</span>
-  <span>Eletrostática &middot; 2ª série EM</span>
+  <span>Prof. Jonas Pinheiro</span>
+  <a href="https://acordaprafisica.com.br">Acorda pra Física</a>
 </footer>
 
 </body>

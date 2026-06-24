@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revisão — Vetores e Eletrostática — Acorda pra Física</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body { font-family: 'DM Sans', Arial, sans-serif; font-size: 11pt; background: #F7F7F7; color: #14344C; padding: 30px 20px; }
+
+  .page { max-width: 820px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 18px rgba(0,0,0,0.10); overflow: hidden; }
+
+  .header { background: #14344C; color: #ffffff; padding: 22px 32px 18px 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+  .header-left h1 { font-family:'Montserrat',sans-serif; font-size: 15pt; font-weight: 800; margin-bottom: 3px; }
+  .header-left h2 { font-size: 11pt; font-weight: 400; opacity: 0.88; margin-bottom: 2px; }
+  .header-left .subtitulo { font-size: 9.5pt; opacity: 0.72; margin-top: 4px; }
+  .header-right { text-align: right; font-size: 9.5pt; opacity: 0.85; white-space: nowrap; }
+  .header-right p { margin-bottom: 2px; }
+
+  .tema-bar { background: #B21119; color: #fff; text-align: center; font-family:'Montserrat',sans-serif; font-size: 9.5pt; font-weight: 700; letter-spacing: 1.5px; padding: 6px 0; text-transform: uppercase; }
+
+  .dados-aluno { background: #F1ECEC; border-bottom: 2px solid rgba(178,17,25,0.25); padding: 12px 32px; display: flex; gap: 32px; align-items: center; }
+  .campo { display: flex; align-items: center; gap: 6px; font-size: 10pt; color: #14344C; font-weight: 600; }
+  .campo .linha { border-bottom: 1.5px solid #14344C; min-width: 160px; height: 16px; }
+  .campo.turma .linha { min-width: 70px; }
+  .campo.data .linha { min-width: 90px; }
+
+  .corpo { padding: 24px 32px 32px 32px; }
+
+  .formula-section { margin-bottom: 22px; }
+  .formula-section h3 { font-family:'Montserrat',sans-serif; font-size: 10.5pt; font-weight: 700; color: #14344C; border-left: 4px solid #B21119; padding-left: 8px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .formula-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+  .formula-table th { background: #14344C; color: #fff; padding: 7px 12px; text-align: left; font-size: 9.5pt; font-weight: 600; }
+  .formula-table td { padding: 7px 12px; border-bottom: 1px solid #dde5eb; vertical-align: middle; }
+  .formula-table tr:nth-child(even) td { background: #F1ECEC; }
+  .formula-table tr:nth-child(odd) td { background: #fafafa; }
+  .formula-table .formula { font-weight: 700; color: #B21119; font-size: 10.5pt; }
+
+  .aux-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 8px; }
+  .aux-table th { background: rgba(178,17,25,0.15); color: #14344C; padding: 5px 10px; text-align: center; font-weight: 700; }
+  .aux-table td { padding: 5px 10px; border-bottom: 1px solid rgba(178,17,25,0.12); text-align: center; }
+  .aux-table tr:nth-child(even) td { background: #F1ECEC; }
+  .aux-table tr:nth-child(odd) td { background: #fafafa; }
+
+  .bloco { margin-bottom: 22px; }
+  .bloco-titulo { font-family:'Montserrat',sans-serif; font-size: 9.5pt; font-weight: 700; color: #B21119; text-transform: uppercase; letter-spacing: 1.2px; border-bottom: 1.5px solid rgba(178,17,25,0.25); padding-bottom: 4px; margin-bottom: 12px; }
+
+  .questao { border-radius: 7px; overflow: hidden; margin-bottom: 10px; border: 1.5px solid rgba(20,52,76,0.12); box-shadow:0 1px 0 rgba(20,52,76,0.05),0 6px 20px -10px rgba(20,52,76,0.12); }
+  .questao-header { background: #14344C; color: #ffffff; font-family:'Montserrat',sans-serif; font-size: 9.5pt; font-weight: 700; padding: 5px 14px; display: flex; align-items: center; gap: 8px; }
+  .questao-body { background: #fafafa; padding: 11px 14px; font-size: 10.5pt; line-height: 1.68; color: #14344C; }
+  .destaque { font-weight: 700; color: #B21119; }
+
+  .tag { display: inline-block; font-size: 7.5pt; font-weight: 700; padding: 1px 7px; border-radius: 10px; letter-spacing: 0.4px; }
+  .tag-calculo   { background: #bbf7d0; color: #14532d; }
+  .tag-conceitual{ background: #fde68a; color: #78350f; }
+  .tag-analise   { background: #fed7aa; color: #7c2d12; }
+  .tag-integracao{ background: #bae6fd; color: #0c4a6e; }
+
+  .diagrama { background: #F1ECEC; border: 1px dashed rgba(178,17,25,0.30); border-radius: 6px; padding: 8px 12px; font-size: 9.5pt; color: #14344C; margin-top: 8px; font-family: monospace; line-height: 1.5; }
+
+  .divisor { border: none; border-top: 1.5px dashed rgba(20,52,76,0.12); margin: 20px 0; }
+
+  .footer { background: #14344C; color: #c8dff0; font-size: 8.5pt; text-align: center; padding: 10px 32px; letter-spacing: 0.3px; }
+  .footer a { color: #ECC4CC; text-decoration: underline; text-underline-offset: 2px; }
+
+  @media print { body { background: #fff; padding: 0; } .page { box-shadow: none; border-radius: 0; } .questao { break-inside: avoid; } .bloco { break-inside: avoid; } }
+  @page { margin: 1.5cm; size: A4; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>FÍSICA — Eletrostática</h1>
+      <h2>Lista de Revisão — Vetores e Eletrostática</h2>
+      <p class="subtitulo">Decomposição Vetorial &bull; Carga Elétrica &bull; Eletrização &bull; Lei de Coulomb</p>
+    </div>
+    <div class="header-right">
+      <p><strong>Prof. Jonas Pinheiro</strong></p>
+      <p>20 Questões</p>
+    </div>
+  </div>
+
+  <div class="tema-bar">Eletrostática &amp; Vetores — Lista de Revisão</div>
+
+  <div class="dados-aluno">
+    <div class="campo"><span>Nome:</span><div class="linha"></div></div>
+    <div class="campo turma"><span>Turma:</span><div class="linha"></div></div>
+    <div class="campo data"><span>Data:</span><div class="linha"></div></div>
+  </div>
+
+  <div class="corpo">
+
+    <div class="formula-section">
+      <h3>Fórmulas de Referência</h3>
+      <table class="formula-table">
+        <thead><tr><th>Grandeza / Relação</th><th>Fórmula</th><th>Legenda</th></tr></thead>
+        <tbody>
+          <tr><td>Componentes de um vetor</td><td class="formula">Vx = V · cos θ &nbsp;&nbsp; Vy = V · sen θ</td><td>θ: ângulo com o eixo x</td></tr>
+          <tr><td>Módulo a partir das componentes</td><td class="formula">|V| = √(Vx² + Vy²)</td><td>Teorema de Pitágoras vetorial</td></tr>
+          <tr><td>Carga e número de elétrons</td><td class="formula">q = n · e</td><td>e = 1,6 × 10⁻¹⁹ C | n: número de elétrons</td></tr>
+          <tr><td>Lei de Coulomb</td><td class="formula">F = k · |q₁| · |q₂| / d²</td><td>k = 9 × 10⁹ N·m²/C² | d: distância (m)</td></tr>
+          <tr><td>Esferas idênticas em contato</td><td class="formula">q<sub>final</sub> = (q₁ + q₂) / 2</td><td>Válido para condutores esféricos idênticos</td></tr>
+        </tbody>
+      </table>
+      <br>
+      <p style="font-size:9.5pt;color:#14344C;font-weight:700;margin-bottom:5px;font-family:'Montserrat',sans-serif;">Valores Trigonométricos</p>
+      <table class="aux-table">
+        <thead><tr><th>Ângulo</th><th>sen</th><th>cos</th><th>tg</th></tr></thead>
+        <tbody>
+          <tr><td>30°</td><td>1/2 = 0,500</td><td>√3/2 ≈ 0,866</td><td>√3/3 ≈ 0,577</td></tr>
+          <tr><td>45°</td><td>√2/2 ≈ 0,707</td><td>√2/2 ≈ 0,707</td><td>1</td></tr>
+          <tr><td>60°</td><td>√3/2 ≈ 0,866</td><td>1/2 = 0,500</td><td>√3 ≈ 1,732</td></tr>
+          <tr><td>53°</td><td>4/5 = 0,800</td><td>3/5 = 0,600</td><td>4/3 ≈ 1,333</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divisor">
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 1 — Decomposição Vetorial</div>
+      <div class="questao"><div class="questao-header">Questão 01 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um vetor de módulo <span class="destaque">20</span> forma um ângulo de <span class="destaque">45°</span> com o eixo x positivo.<br><br><strong>a)</strong> Calcule as componentes Vx e Vy desse vetor.<br><strong>b)</strong> As duas componentes são iguais? Por que isso ocorre especificamente para 45°?</div></div>
+      <div class="questao"><div class="questao-header">Questão 02 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um vetor de módulo <span class="destaque">8</span> aponta em uma direção que forma <span class="destaque">60°</span> com o eixo x.<br><br><strong>a)</strong> Determine Vx e Vy, deixando as raízes exatas quando necessário.<br><strong>b)</strong> Qual componente é maior, a horizontal ou a vertical? Explique pelo valor do ângulo.</div></div>
+      <div class="questao"><div class="questao-header">Questão 03 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um vetor possui componente horizontal <span class="destaque">Vx = 3</span> e componente vertical <span class="destaque">Vy = 4</span>.<br><br><strong>a)</strong> Calcule o módulo desse vetor.<br><strong>b)</strong> Qual ângulo esse vetor forma com o eixo x? (Use a tabela de senos e cossenos.)</div></div>
+      <div class="questao"><div class="questao-header">Questão 04 <span class="tag tag-analise">ANÁLISE</span></div><div class="questao-body">Um vetor de módulo <span class="destaque">6</span> faz um ângulo de <span class="destaque">30°</span> com o eixo x.<br><br><strong>a)</strong> Calcule Vx e Vy.<br><strong>b)</strong> Qual das duas componentes é maior? Isso sempre ocorre para ângulos menores que 45°? Justifique.</div></div>
+      <div class="questao"><div class="questao-header">Questão 05 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um objeto é puxado simultaneamente por duas forças perpendiculares entre si: uma horizontal de <span class="destaque">Fx = 6 N</span> e uma vertical de <span class="destaque">Fy = 8 N</span>.<br><br><strong>a)</strong> Determine o módulo da força resultante.<br><strong>b)</strong> Se apenas a componente vertical fosse dobrada (Fy = 16 N), mantendo Fx, como ficaria o módulo resultante?</div></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 2 — Carga Elétrica e Número de Elétrons</div>
+      <div class="questao"><div class="questao-header">Questão 06 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um bastão de vidro é esfregado em um pano de seda e adquire carga de <span class="destaque">+3,2 × 10⁻⁶ C</span>. Considere e = 1,6 × 10⁻¹⁹ C.<br><br><strong>a)</strong> Quantos elétrons foram transferidos do bastão para o pano?<br><strong>b)</strong> O bastão ganhou ou perdeu elétrons? Para onde foram esses elétrons?</div></div>
+      <div class="questao"><div class="questao-header">Questão 07 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Um condutor metálico eletrizado positivamente possui carga de <span class="destaque">+1,6 × 10⁻⁵ C</span>. Considere e = 1,6 × 10⁻¹⁹ C.<br><br>Quantos elétrons esse condutor perdeu em relação ao seu estado neutro?</div></div>
+      <div class="questao"><div class="questao-header">Questão 08 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Uma esfera metálica neutra recebe, por contato com outro condutor, <span class="destaque">5 × 10¹³ elétrons</span>. Considere e = 1,6 × 10⁻¹⁹ C.<br><br><strong>a)</strong> Qual é a carga elétrica adquirida pela esfera, em Coulombs?<br><strong>b)</strong> A carga é positiva ou negativa? Justifique.</div></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 3 — Eletrização por Contato: Partilha de Carga</div>
+      <div class="questao"><div class="questao-header">Questão 09 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Quatro esferas metálicas idênticas A, B, C e D estão isoladas. Apenas A possui carga de <span class="destaque">12 μC</span>; B, C e D estão neutras. Realiza-se a seguinte sequência de contatos:<br><br><div class="diagrama">A toca B → separam-se<br>B toca C → separam-se<br>C toca D → separam-se</div><br><strong>a)</strong> Qual é a carga de cada esfera após cada contato? Mostre os cálculos passo a passo.<br><strong>b)</strong> Qual é a carga final da esfera D?</div></div>
+      <div class="questao"><div class="questao-header">Questão 10 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">A esfera A possui carga de <span class="destaque">+6 μC</span> e a esfera B possui carga de <span class="destaque">−2 μC</span>. As esferas são idênticas e condutoras. Encostam-se as duas e depois separam-se.<br><br><strong>a)</strong> Qual é a carga final de cada esfera?<br><strong>b)</strong> A carga total do sistema foi conservada? Verifique numericamente.</div></div>
+      <div class="questao"><div class="questao-header">Questão 11 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Uma esfera A com carga de <span class="destaque">9 μC</span> toca uma esfera B idêntica e neutra; as duas se separam. Em seguida, B toca uma terceira esfera C idêntica e neutra; separam-se novamente.<br><br><strong>a)</strong> Qual é a carga de B após o primeiro contato?<br><strong>b)</strong> Qual é a carga final de C?<br><strong>c)</strong> Qual é a carga final de A?</div></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 4 — Lei de Coulomb: Calcular a Força</div>
+      <div class="questao"><div class="questao-header">Questão 12 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas elétricas de <span class="destaque">3 μC</span> cada estão separadas por <span class="destaque">0,3 m</span> no vácuo. Considere k = 9 × 10⁹ N·m²/C².<br><br><strong>a)</strong> Calcule a força elétrica entre elas.<br><strong>b)</strong> Essa força é de atração ou repulsão?</div></div>
+      <div class="questao"><div class="questao-header">Questão 13 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas de <span class="destaque">4 μC</span> e <span class="destaque">1 μC</span> estão separadas por <span class="destaque">0,2 m</span> no vácuo. Considere k = 9 × 10⁹ N·m²/C².<br><br>Calcule a intensidade da força elétrica entre as cargas.</div></div>
+      <div class="questao"><div class="questao-header">Questão 14 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas de <span class="destaque">5 μC</span> e <span class="destaque">20 μC</span> estão separadas por <span class="destaque">3 m</span> no vácuo. Considere k = 9 × 10⁹ N·m²/C².<br><br><strong>a)</strong> Calcule a força elétrica entre elas.<br><strong>b)</strong> A força sobre q₁ tem o mesmo módulo que a força sobre q₂? Justifique com base nas Leis de Newton.</div></div>
+      <div class="questao"><div class="questao-header">Questão 15 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas de sinais opostos, cada uma com módulo de <span class="destaque">6 μC</span>, estão separadas por <span class="destaque">0,6 m</span> no vácuo. Considere k = 9 × 10⁹ N·m²/C².<br><br><strong>a)</strong> Calcule a intensidade da força elétrica entre elas.<br><strong>b)</strong> A força é atrativa ou repulsiva? Como você determina isso a partir dos sinais das cargas?</div></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 5 — Lei de Coulomb: Isolar d ou q</div>
+      <div class="questao"><div class="questao-header">Questão 16 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas de <span class="destaque">1 μC</span> e <span class="destaque">4 μC</span> no vácuo se repelem com uma força de <span class="destaque">0,9 N</span>. Considere k = 9 × 10⁹ N·m²/C².<br><br>Determine a distância entre as cargas.</div></div>
+      <div class="questao"><div class="questao-header">Questão 17 <span class="tag tag-calculo">CÁLCULO</span></div><div class="questao-body">Duas cargas elétricas <strong>iguais e desconhecidas</strong> estão separadas por <span class="destaque">0,3 m</span> no vácuo e se repelem com força de <span class="destaque">0,1 N</span>. Considere k = 9 × 10⁹ N·m²/C².<br><br>Determine o valor de cada carga.</div></div>
+      <div class="questao"><div class="questao-header">Questão 18 <span class="tag tag-analise">ANÁLISE</span></div><div class="questao-body">Duas cargas iguais de <span class="destaque">q = 1 μC</span> cada estão separadas por uma distância <span class="destaque">d = 0,1 m</span> no vácuo e interagem com força F₀. Considere k = 9 × 10⁹ N·m²/C².<br><br><strong>a)</strong> Calcule F₀.<br><strong>b)</strong> Se a distância entre as cargas for <strong>dobrada</strong> (d' = 0,2 m), qual será a nova força F'?<br><strong>c)</strong> Qual é a razão F'/F₀? O que essa razão revela sobre a relação entre força e distância na Lei de Coulomb?</div></div>
+    </div>
+
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 6 — Integração e Conceitual</div>
+      <div class="questao"><div class="questao-header">Questão 19 <span class="tag tag-integracao">INTEGRAÇÃO</span></div><div class="questao-body">A força elétrica resultante que age sobre uma carga tem intensidade de <span class="destaque">0,9 N</span> e aponta em uma direção que forma <span class="destaque">60°</span> com o eixo horizontal.<br><br><strong>a)</strong> Decomponha essa força nas componentes horizontal (Fx) e vertical (Fy).<br><strong>b)</strong> Qual componente é maior? Isso é esperado para um ângulo de 60°? Explique.</div></div>
+      <div class="questao"><div class="questao-header">Questão 20 <span class="tag tag-conceitual">CONCEITUAL</span></div><div class="questao-body">Um estudante esfrega um bastão de vidro com um pano de seda. Após o atrito, o bastão fica eletrizado positivamente.<br><br><strong>a)</strong> O que aconteceu microscopicamente durante o atrito? Para onde foram os elétrons?<br><strong>b)</strong> Qual princípio fundamental garante que a carga total do sistema (bastão + pano) não muda? Enuncie-o com suas palavras.<br><strong>c)</strong> Se esse bastão eletrizado for aproximado, sem tocar, de uma esfera metálica neutra isolada, o que acontece com as cargas na esfera? Esse fenômeno tem um nome — qual é?</div></div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Prof. Jonas Pinheiro &nbsp;&bull;&nbsp; <a href="https://acordaprafisica.com.br">Acorda pra Física</a> &nbsp;&bull;&nbsp; Lista de Revisão — Vetores e Eletrostática
+  </div>
+
+</div>
+</body>
+</html>
