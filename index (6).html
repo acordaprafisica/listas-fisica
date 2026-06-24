@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Ondulatória — 3º Ano</title>
+<style>
+  :root{
+    --azul:#1F4E79;        /* cabeçalhos de seção */
+    --teal:#0E7C7B;        /* cor temática: ondas */
+    --teal-claro:#E3F2F1;  /* fundo tabela/enunciado */
+    --cinza:#F4F6F7;       /* fundo enunciado */
+    --borda:#D5DBDB;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11pt;
+    color:#1a1a1a;
+    line-height:1.5;
+    margin:0;
+    padding:28px 34px;
+    background:#fff;
+  }
+
+  /* Cabeçalho */
+  .cabecalho{
+    border-bottom:3px solid var(--teal);
+    padding-bottom:10px;
+    margin-bottom:14px;
+  }
+  .cabecalho .disciplina{
+    color:var(--azul);
+    font-size:15pt;
+    font-weight:bold;
+    letter-spacing:.3px;
+  }
+  .cabecalho .prof{
+    color:var(--teal);
+    font-size:10.5pt;
+    font-weight:bold;
+    margin-top:2px;
+  }
+  .titulo-lista{
+    color:var(--azul);
+    font-size:13pt;
+    font-weight:bold;
+    margin:6px 0 2px;
+  }
+  .subtitulo{
+    font-size:10pt;
+    color:#555;
+  }
+
+  /* Campos do aluno */
+  .identificacao{
+    display:flex;
+    gap:14px;
+    margin:14px 0 6px;
+    font-size:10.5pt;
+  }
+  .identificacao .campo{ display:flex; align-items:flex-end; gap:6px; }
+  .identificacao .campo.nome{ flex:2; }
+  .identificacao .campo.turma{ flex:1; }
+  .identificacao .campo.data{ flex:1; }
+  .identificacao .rotulo{ font-weight:bold; color:var(--azul); white-space:nowrap; }
+  .identificacao .linha{
+    flex:1;
+    border-bottom:1px solid #999;
+    height:1.1em;
+  }
+
+  /* Tabela de fórmulas */
+  .formulas{
+    margin:14px 0 18px;
+    border:1px solid var(--borda);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .formulas h2{
+    background:var(--azul);
+    color:#fff;
+    font-size:11pt;
+    margin:0;
+    padding:7px 12px;
+    font-weight:bold;
+  }
+  table{ width:100%; border-collapse:collapse; }
+  .formulas td{
+    padding:7px 12px;
+    font-size:10.5pt;
+    border-bottom:1px solid var(--borda);
+  }
+  .formulas tr:nth-child(even){ background:var(--teal-claro); }
+  .formulas tr:last-child td{ border-bottom:none; }
+  .formulas .simbolo{
+    width:34%;
+    font-family:"Cambria Math", Georgia, serif;
+    font-style:italic;
+    color:var(--teal);
+    font-weight:bold;
+    font-size:11.5pt;
+  }
+  .formulas .legenda{ color:#333; }
+
+  /* Exercícios */
+  .exercicio{
+    margin-bottom:14px;
+    border:1px solid var(--borda);
+    border-radius:6px;
+    overflow:hidden;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .exercicio .titulo{
+    background:var(--teal);
+    color:#fff;
+    font-weight:bold;
+    font-size:10.5pt;
+    padding:6px 12px;
+  }
+  .exercicio .titulo .num{
+    display:inline-block;
+    min-width:1.4em;
+  }
+  .exercicio .enunciado{
+    background:var(--cinza);
+    padding:10px 14px;
+    font-size:11pt;
+    text-align:justify;
+  }
+  .exercicio .enunciado .itens{
+    margin:6px 0 0;
+    padding-left:4px;
+  }
+  .exercicio .enunciado .itens span{ display:block; margin-top:2px; }
+  b.dado{ color:var(--azul); }
+
+  .rodape{
+    margin-top:18px;
+    padding-top:8px;
+    border-top:1px solid var(--borda);
+    font-size:9pt;
+    color:#777;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* Impressão */
+  @page{ size:A4; margin:16mm 14mm; }
+  @media print{
+    body{ padding:0; font-size:11pt; }
+    .exercicio, .formulas{ break-inside:avoid; page-break-inside:avoid; }
+    .cabecalho{ break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="cabecalho">
+    <div class="disciplina">Física — Ondulatória</div>
+    <div class="prof">Prof. Jonas Pinheiro &nbsp;•&nbsp; 3º Ano — Ensino Médio</div>
+    <div class="titulo-lista">Lista de Exercícios: Ondas, Frequência e Comprimento de Onda</div>
+    <div class="subtitulo">Questões dissertativas — desenvolva todos os cálculos e justifique as respostas. Adote v<sub>som</sub> = 340 m/s no ar quando não indicado.</div>
+  </div>
+
+  <div class="identificacao">
+    <div class="campo nome"><span class="rotulo">Nome:</span><span class="linha"></span></div>
+    <div class="campo turma"><span class="rotulo">Turma:</span><span class="linha"></span></div>
+    <div class="campo data"><span class="rotulo">Data:</span><span class="linha"></span></div>
+  </div>
+
+  <div class="formulas">
+    <h2>Fórmulas de referência</h2>
+    <table>
+      <tr>
+        <td class="simbolo">v = λ · f</td>
+        <td class="legenda">Velocidade de propagação = comprimento de onda × frequência</td>
+      </tr>
+      <tr>
+        <td class="simbolo">f = 1 / T</td>
+        <td class="legenda">Frequência = inverso do período</td>
+      </tr>
+      <tr>
+        <td class="simbolo">v = λ / T</td>
+        <td class="legenda">Velocidade a partir do comprimento de onda e do período</td>
+      </tr>
+      <tr>
+        <td class="simbolo">c = λ · f</td>
+        <td class="legenda">Ondas eletromagnéticas no vácuo, com c = 3 × 10<sup>8</sup> m/s</td>
+      </tr>
+      <tr>
+        <td class="simbolo">v = Δs / Δt</td>
+        <td class="legenda">Velocidade média (útil em problemas de eco e propagação)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">1.</span> Onda em uma corda</div>
+    <div class="enunciado">
+      Uma onda se propaga em uma corda esticada. Observando um único ponto da corda, percebe-se que ele realiza <b class="dado">30 oscilações completas em 6 segundos</b>. Sabendo que o comprimento de onda vale <b class="dado">0,40 m</b>, determine a frequência, o período e a velocidade de propagação da onda.
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">2.</span> Ondas no mar</div>
+    <div class="enunciado">
+      Um surfista parado sobre a prancha percebe que as cristas das ondas passam por ele a cada <b class="dado">4 segundos</b>, e estima que a distância entre duas cristas consecutivas seja de <b class="dado">12 metros</b>.
+      <div class="itens">
+        <span>a) Calcule a velocidade de propagação das ondas.</span>
+        <span>b) Quantas cristas passam pelo surfista no intervalo de 1 minuto?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">3.</span> Som que muda de meio</div>
+    <div class="enunciado">
+      Uma onda sonora de frequência <b class="dado">680 Hz</b> propaga-se no ar com velocidade de <b class="dado">340 m/s</b>. Em seguida, ela passa a se propagar na água, onde a velocidade do som é <b class="dado">1480 m/s</b>.
+      <div class="itens">
+        <span>a) Determine o comprimento de onda no ar.</span>
+        <span>b) Determine o comprimento de onda na água.</span>
+        <span>c) Explique por que a frequência da onda não se altera ao mudar de meio.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">4.</span> O eco no paredão</div>
+    <div class="enunciado">
+      Uma pessoa dá um grito voltado para um paredão rochoso e ouve o eco <b class="dado">1,5 segundo</b> depois. O paredão está a <b class="dado">255 metros</b> de distância.
+      <div class="itens">
+        <span>a) Com base nesses dados, calcule a velocidade do som no ar naquele momento.</span>
+        <span>b) Se o grito tem frequência predominante de 510 Hz, qual é o comprimento de onda desse som?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">5.</span> Rádio FM e rádio AM</div>
+    <div class="enunciado">
+      As ondas de rádio são ondas eletromagnéticas e propagam-se com velocidade <b class="dado">c = 3 × 10<sup>8</sup> m/s</b>. Uma estação FM transmite na frequência de <b class="dado">100 MHz</b> e uma estação AM transmite em <b class="dado">1000 kHz</b>.
+      <div class="itens">
+        <span>a) Calcule o comprimento de onda transmitido por cada estação.</span>
+        <span>b) Qual das duas emite ondas de maior comprimento de onda? Justifique relacionando frequência e comprimento de onda.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">6.</span> Trem de ondas na corda</div>
+    <div class="enunciado">
+      Uma onda transversal percorre uma corda de <b class="dado">3 metros</b> de comprimento. Em um certo instante, observa-se que a corda contém exatamente <b class="dado">6 comprimentos de onda completos</b>. A onda leva <b class="dado">0,5 segundo</b> para percorrer a corda de uma ponta à outra.
+      <div class="itens">
+        <span>a) Determine o comprimento de onda.</span>
+        <span>b) Calcule a velocidade de propagação.</span>
+        <span>c) Determine a frequência da onda.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">7.</span> Dois diapasões</div>
+    <div class="enunciado">
+      Em um laboratório, dois diapasões vibram emitindo som no ar (v = 340 m/s). O primeiro tem frequência de <b class="dado">256 Hz</b> e o segundo, de <b class="dado">512 Hz</b>.
+      <div class="itens">
+        <span>a) Calcule o comprimento de onda do som emitido por cada diapasão.</span>
+        <span>b) Compare os dois resultados e explique fisicamente por que, ao dobrar a frequência, o comprimento de onda se comporta da forma observada.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">8.</span> A ecolocalização do morcego</div>
+    <div class="enunciado">
+      Para se localizar e caçar, um morcego emite ultrassom de frequência <b class="dado">50 000 Hz</b>, que se propaga no ar a <b class="dado">340 m/s</b>.
+      <div class="itens">
+        <span>a) Qual é o comprimento de onda desse ultrassom?</span>
+        <span>b) O morcego emite um pulso e recebe o eco refletido por um inseto <b class="dado">0,02 segundo</b> depois. A que distância está o inseto?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">9.</span> Ondas na piscina</div>
+    <div class="enunciado">
+      Uma criança bate ritmicamente na superfície da água de uma piscina, gerando ondas circulares. Conta-se que <b class="dado">5 ondas completas</b> se formam em <b class="dado">2 segundos</b>, e mede-se que a distância entre duas cristas vizinhas é de <b class="dado">15 cm</b>.
+      <div class="itens">
+        <span>a) Determine a frequência e o período das ondas.</span>
+        <span>b) Calcule a velocidade de propagação das ondas na água.</span>
+        <span>c) Quanto tempo uma onda leva para atingir a borda da piscina, situada a 3 metros do ponto onde foi gerada?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercicio">
+    <div class="titulo"><span class="num">10.</span> Relâmpago e trovão</div>
+    <div class="enunciado">
+      Durante uma tempestade, uma pessoa vê o clarão do relâmpago e, <b class="dado">6 segundos</b> depois, ouve o trovão. Considere a velocidade do som no ar igual a <b class="dado">340 m/s</b> e a velocidade da luz tão grande que pode ser tomada como instantânea nessa distância.
+      <div class="itens">
+        <span>a) A que distância da pessoa ocorreu o relâmpago?</span>
+        <span>b) Sabendo que o som do trovão tem frequência predominante de 85 Hz, qual é o seu comprimento de onda?</span>
+        <span>c) Explique por que a pessoa vê o relâmpago antes de ouvir o trovão.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">
+    <span>Prof. Jonas Pinheiro — Física</span>
+    <span>Ondulatória • 3º Ano EM</span>
+  </div>
+
+</body>
+</html>

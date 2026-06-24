@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Eletrostática — Lei de Coulomb</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --purple-deep:   #4A1D96;
+    --purple-mid:    #7E22CE;
+    --purple-light:  #A855F7;
+    --purple-tint:   #F5F0FF;
+    --purple-border: #DDD6FE;
+    --blue-dark:     #1F4E79;
+    --ink:           #1A1A2E;
+    --ink-soft:      #374151;
+    --rule:          #E5E7EB;
+    --white:         #FFFFFF;
+    --formula-bg:    #F8F6FF;
+    --ex-bg:         #FAFAFA;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.55;
+  }
+
+  /* ── PÁGINA ────────────────────────────────────────── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 18mm 20mm 16mm;
+    background: var(--white);
+  }
+
+  /* ── CABEÇALHO ─────────────────────────────────────── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    border-bottom: 3px solid var(--purple-mid);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    gap: 16px;
+  }
+
+  .header-left .school-line {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--purple-light);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .header-left h1 {
+    font-size: 15pt;
+    font-weight: 700;
+    color: var(--purple-deep);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .header-left h1 span {
+    display: block;
+    font-size: 9pt;
+    font-weight: 500;
+    color: var(--blue-dark);
+    letter-spacing: 0.02em;
+    margin-top: 3px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+
+  .badge {
+    background: var(--purple-deep);
+    color: var(--white);
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .professor {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* ── CAMPOS DO ALUNO ───────────────────────────────── */
+  .student-fields {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .field {
+    border-bottom: 1.5px solid var(--purple-mid);
+    padding-bottom: 3px;
+  }
+
+  .field label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple-mid);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .field .line {
+    height: 14px;
+  }
+
+  /* ── TABELA DE FÓRMULAS ────────────────────────────── */
+  .formula-section {
+    background: var(--formula-bg);
+    border: 1.5px solid var(--purple-border);
+    border-left: 4px solid var(--purple-mid);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+  }
+
+  .formula-section h2 {
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--purple-deep);
+    margin-bottom: 8px;
+  }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 20px;
+  }
+
+  .formula-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formula-item .expr {
+    font-family: 'Courier New', monospace;
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--purple-deep);
+  }
+
+  .formula-item .desc {
+    font-size: 7.5pt;
+    color: var(--ink-soft);
+    margin-top: 1px;
+  }
+
+  .formula-note {
+    margin-top: 8px;
+    font-size: 7.5pt;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--purple-border);
+    padding-top: 6px;
+  }
+
+  /* ── EXERCÍCIOS ────────────────────────────────────── */
+  .section-title {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--blue-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .exercise {
+    border: 1.5px solid var(--purple-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 11px;
+  }
+
+  .exercise-header {
+    background: var(--purple-deep);
+    color: var(--white);
+    padding: 5px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ex-num {
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .ex-tag {
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    background: rgba(255,255,255,0.18);
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  .exercise-body {
+    background: var(--ex-bg);
+    padding: 10px 14px;
+  }
+
+  .exercise-body p {
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .exercise-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .data-box {
+    display: inline-block;
+    background: var(--purple-tint);
+    border: 1px solid var(--purple-border);
+    border-radius: 5px;
+    padding: 5px 12px;
+    margin-top: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 9.5pt;
+    color: var(--purple-deep);
+    line-height: 1.7;
+  }
+
+  .ask {
+    font-weight: 700;
+    color: var(--purple-deep);
+  }
+
+  /* ── RODAPÉ ────────────────────────────────────────── */
+  .footer {
+    margin-top: 20px;
+    border-top: 1px solid var(--rule);
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer span {
+    font-size: 7.5pt;
+    color: #9CA3AF;
+  }
+
+  /* ── IMPRESSÃO ─────────────────────────────────────── */
+  @media print {
+    body { background: white; }
+    .page {
+      width: 100%;
+      padding: 14mm 16mm;
+      margin: 0;
+      box-shadow: none;
+    }
+    @page {
+      size: A4;
+      margin: 12mm 14mm;
+    }
+  }
+
+  @media screen {
+    body { background: #F0EDF8; padding: 24px 0 40px; }
+    .page {
+      box-shadow: 0 4px 32px rgba(74,29,150,0.10);
+      border-radius: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CABEÇALHO -->
+  <header class="header">
+    <div class="header-left">
+      <div class="school-line">Física — Eletrostática</div>
+      <h1>Lei de Coulomb
+        <span>Ensino Médio — 2.º Ano</span>
+      </h1>
+    </div>
+    <div class="header-right">
+      <span class="badge">2.º Ano EM</span>
+      <span class="professor">Prof. Jonas Pinheiro</span>
+    </div>
+  </header>
+
+  <!-- CAMPOS DO ALUNO -->
+  <div class="student-fields">
+    <div class="field">
+      <label>Nome</label>
+      <div class="line"></div>
+    </div>
+    <div class="field">
+      <label>Turma</label>
+      <div class="line"></div>
+    </div>
+    <div class="field">
+      <label>Data</label>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <!-- FÓRMULAS DE REFERÊNCIA -->
+  <div class="formula-section">
+    <h2>Fórmulas de Referência</h2>
+    <div class="formula-grid">
+      <div class="formula-item">
+        <span class="expr">F = k · |q₁| · |q₂| / d²</span>
+        <span class="desc">Lei de Coulomb (módulo)</span>
+      </div>
+      <div class="formula-item">
+        <span class="expr">k = 9 × 10⁹ N·m²/C²</span>
+        <span class="desc">Constante eletrostática (vácuo)</span>
+      </div>
+      <div class="formula-item">
+        <span class="expr">1 μC = 10⁻⁶ C</span>
+        <span class="desc">Microcoulomb para coulomb</span>
+      </div>
+      <div class="formula-item">
+        <span class="expr">F⃗_res = F⃗₁ + F⃗₂ + ...</span>
+        <span class="desc">Princípio da superposição</span>
+      </div>
+      <div class="formula-item">
+        <span class="expr">|F⃗_res|² = F₁² + F₂² + 2F₁F₂cosθ</span>
+        <span class="desc">Resultante de dois vetores</span>
+      </div>
+      <div class="formula-item">
+        <span class="expr">F_res = F·√3</span>
+        <span class="desc">Resultante (forças iguais, θ = 60°)</span>
+      </div>
+    </div>
+    <div class="formula-note">
+      Convenção de sinal: cargas de mesmo sinal se repelem; cargas de sinais opostos se atraem. Adote sentido positivo explicitamente em cada problema.
+    </div>
+  </div>
+
+  <!-- EXERCÍCIOS -->
+  <div class="section-title">Questões</div>
+
+  <!-- Q1 -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num">Questão 1</span>
+      <span class="ex-tag">Obtenção de carga</span>
+    </div>
+    <div class="exercise-body">
+      <p>
+        Dois corpos eletrizados são colocados no vácuo a uma distância de <strong>30 cm</strong> entre si.
+        Sabe-se que a carga de um deles é <strong>q₁ = 4 μC</strong> e que a força elétrica entre eles tem
+        módulo <strong>F = 0,20 N</strong>.
+      </p>
+      <p class="ask">a) Determine o valor da carga q₂.</p>
+      <p class="ask">b) Se a distância for reduzida à metade, o que acontece com a força? Justifique algebricamente.</p>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num">Questão 2</span>
+      <span class="ex-tag">Superposição — 3 cargas colineares</span>
+    </div>
+    <div class="exercise-body">
+      <p>
+        Três cargas pontuais estão dispostas sobre um eixo horizontal conforme o esquema abaixo:
+      </p>
+      <div class="data-box">
+        q₁ = +6 μC &nbsp;em&nbsp; x = 0<br>
+        q₂ = −3 μC &nbsp;em&nbsp; x = 20 cm<br>
+        q₃ = +4 μC &nbsp;em&nbsp; x = 50 cm
+      </div>
+      <p style="margin-top:8px" class="ask">a) Calcule as forças que q₁ e q₃ exercem sobre q₂ (módulo e sentido).</p>
+      <p class="ask">b) Determine a força resultante sobre q₂ (módulo e sentido).</p>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num">Questão 3</span>
+      <span class="ex-tag">Ponto de equilíbrio</span>
+    </div>
+    <div class="exercise-body">
+      <p>
+        Duas cargas positivas são fixadas em uma reta:
+      </p>
+      <div class="data-box">
+        q₁ = +1 μC &nbsp;em&nbsp; x = 0<br>
+        q₂ = +4 μC &nbsp;em&nbsp; x = 60 cm
+      </div>
+      <p style="margin-top:8px">
+        Uma terceira carga <strong>q₃ = +2 μC</strong> é colocada sobre esse mesmo eixo, entre q₁ e q₂.
+      </p>
+      <p class="ask">a) Em que posição x deve ser colocada q₃ para que a força elétrica resultante sobre ela seja nula?</p>
+      <p class="ask">b) Por que essa posição de equilíbrio não seria possível se q₃ estivesse fora do segmento q₁q₂?</p>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="exercise">
+    <div class="exercise-header">
+      <span class="ex-num">Questão 4</span>
+      <span class="ex-tag">Geometria — triângulo equilátero</span>
+    </div>
+    <div class="exercise-body">
+      <p>
+        Três cargas idênticas <strong>q = +5 μC</strong> são colocadas nos vértices de um triângulo
+        equilátero de lado <strong>L = 40 cm</strong>.
+      </p>
+      <p class="ask">a) Calcule o módulo da força que cada uma das outras cargas exerce sobre q₃.</p>
+      <p class="ask">b) As forças sobre q₃ formam um ângulo de 60° entre si. Use a fórmula da resultante para dois vetores e mostre que F<sub>res</sub> = F·√3.</p>
+      <p class="ask">c) Determine o módulo e indique a direção da força resultante sobre q₃.</p>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <span>Prof. Jonas Pinheiro — Lista de Eletrostática: Lei de Coulomb</span>
+    <span>2.º Ano do Ensino Médio</span>
+  </footer>
+
+</div>
+</body>
+</html>

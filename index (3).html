@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Calorimetria — 1ª série EM</title>
+<style>
+  :root{
+    --azul:#1F4E79;        /* cabeçalhos das seções */
+    --calor:#C0392B;       /* cor temática: calor */
+    --calor-claro:#FDEDEC; /* fundo de destaque */
+    --cinza:#F4F4F4;       /* fundo do enunciado */
+    --linha:#D9D9D9;
+    --texto:#1a1a1a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11pt;
+    color:var(--texto);
+    line-height:1.45;
+    margin:0 auto;
+    background:#fff;
+    padding:32px 40px;
+    max-width:820px;
+  }
+  header.topo{
+    border-bottom:3px solid var(--azul);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .topo .disciplina{
+    font-size:9.5pt;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--calor);
+    font-weight:bold;
+  }
+  .topo h1{
+    font-size:17pt;
+    color:var(--azul);
+    margin:4px 0 2px;
+  }
+  .topo .prof{
+    font-size:10pt;
+    color:#555;
+  }
+  .ident{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    margin:14px 0 18px;
+    font-size:10.5pt;
+  }
+  .ident .campo{flex:1 1 auto;}
+  .ident .linha-preench{
+    display:inline-block;
+    border-bottom:1px solid #888;
+    min-width:120px;
+  }
+  .ident .campo.nome .linha-preench{min-width:280px;}
+
+  h2.secao{
+    font-size:12pt;
+    color:var(--azul);
+    border-left:5px solid var(--calor);
+    padding:4px 0 4px 10px;
+    margin:22px 0 10px;
+    background:linear-gradient(90deg,var(--calor-claro),transparent);
+  }
+
+  table.formulas{
+    width:100%;
+    border-collapse:collapse;
+    margin:6px 0 4px;
+    font-size:10.5pt;
+  }
+  table.formulas caption{
+    text-align:left;
+    font-weight:bold;
+    color:var(--azul);
+    padding-bottom:5px;
+  }
+  table.formulas th{
+    background:var(--azul);
+    color:#fff;
+    text-align:left;
+    padding:6px 10px;
+    font-size:10pt;
+  }
+  table.formulas td{
+    padding:6px 10px;
+    border-bottom:1px solid var(--linha);
+  }
+  table.formulas tr:nth-child(even) td{background:var(--cinza);}
+  table.formulas .form{
+    font-family:"Cambria Math", Georgia, serif;
+    font-weight:bold;
+    color:var(--calor);
+    white-space:nowrap;
+  }
+
+  .exercicio{
+    margin:0 0 12px;
+    border:1px solid var(--linha);
+    border-radius:6px;
+    overflow:hidden;
+    page-break-inside:avoid;
+  }
+  .exercicio .cab{
+    background:var(--calor);
+    color:#fff;
+    font-weight:bold;
+    padding:5px 12px;
+    font-size:10.5pt;
+  }
+  .exercicio .corpo{
+    background:var(--cinza);
+    padding:9px 12px;
+  }
+  .exercicio .corpo p{margin:0;}
+  .exercicio .itens{margin:6px 0 0; padding-left:22px;}
+  .exercicio .itens li{margin:2px 0;}
+  .dado{font-weight:bold; color:var(--azul);}
+
+  footer.rodape{
+    margin-top:22px;
+    border-top:2px solid var(--azul);
+    padding-top:8px;
+    font-size:9pt;
+    color:#666;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media print{
+    body{padding:0; font-size:10.5pt;}
+    @page{margin:1.4cm;}
+    .exercicio{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="disciplina">Física &middot; Termologia</div>
+  <h1>Calorimetria: calor sensível, latente e equilíbrio térmico</h1>
+  <div class="prof">Prof. Jonas Pinheiro &nbsp;|&nbsp; 1ª série — Ensino Médio</div>
+</header>
+
+<div class="ident">
+  <span class="campo nome">Nome: <span class="linha-preench"></span></span>
+  <span class="campo">Turma: <span class="linha-preench"></span></span>
+  <span class="campo">Data: <span class="linha-preench"></span></span>
+</div>
+
+<table class="formulas">
+  <caption>Fórmulas e dados de referência</caption>
+  <thead>
+    <tr><th>Grandeza / dado</th><th>Relação ou valor</th><th>Observações</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Calor sensível</td><td class="form">Q = m &middot; c &middot; &Delta;T</td><td>muda a temperatura, sem mudar de estado</td></tr>
+    <tr><td>Calor latente</td><td class="form">Q = m &middot; L</td><td>muda de estado, com temperatura constante</td></tr>
+    <tr><td>Equilíbrio térmico</td><td class="form">Q<sub>cedido</sub> + Q<sub>recebido</sub> = 0</td><td>soma dos calores trocados é nula (sistema isolado)</td></tr>
+    <tr><td>Calor específico da água</td><td class="form">c = 1,0 cal/g&middot;°C</td><td>usar salvo indicação contrária</td></tr>
+    <tr><td>Calor latente de fusão (gelo)</td><td class="form">L<sub>F</sub> = 80 cal/g</td><td>gelo &rarr; água, a 0 °C</td></tr>
+    <tr><td>Calor latente de vaporização (água)</td><td class="form">L<sub>V</sub> = 540 cal/g</td><td>água &rarr; vapor, a 100 °C</td></tr>
+  </tbody>
+</table>
+
+<h2 class="secao">Bloco 1 — Conceitos fundamentais</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 1</div>
+  <div class="corpo">
+    <p>Durante o aquecimento de uma substância, parte do calor altera sua temperatura e parte é usada para mudar seu estado físico.</p>
+    <ol class="itens" type="a">
+      <li>Explique a diferença entre <strong>calor sensível</strong> e <strong>calor latente</strong>.</li>
+      <li>Por que, durante uma mudança de estado (como o gelo derretendo), a temperatura permanece <strong>constante</strong> mesmo recebendo calor?</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 2</div>
+  <div class="corpo">
+    <p>Um corpo quente e um corpo frio são colocados em contato dentro de um recipiente isolado.</p>
+    <ol class="itens" type="a">
+      <li>Em que sentido o calor flui entre os dois corpos?</li>
+      <li>O que caracteriza o <strong>equilíbrio térmico</strong> e o que acontece com as temperaturas dos dois corpos quando ele é atingido?</li>
+    </ol>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 2 — Calor sensível (Q = m &middot; c &middot; &Delta;T)</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 3</div>
+  <div class="corpo">
+    <p>Uma panela contém <span class="dado">200 g de água</span> a <span class="dado">20 °C</span>. Determine a quantidade de calor necessária para aquecê-la até <span class="dado">80 °C</span>.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 4</div>
+  <div class="corpo">
+    <p>Uma massa de <span class="dado">150 g de água</span>, inicialmente a <span class="dado">25 °C</span>, recebe <span class="dado">4 500 cal</span> de calor.</p>
+    <ol class="itens" type="a">
+      <li>Qual é a variação de temperatura (&Delta;T) sofrida pela água?</li>
+      <li>Qual é a temperatura final atingida?</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 5</div>
+  <div class="corpo">
+    <p>Um bloco metálico de <span class="dado">400 g</span> recebe <span class="dado">1 600 cal</span> e tem sua temperatura aumentada em <span class="dado">20 °C</span>. Determine o calor específico desse metal.</p>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 3 — Calor latente (Q = m &middot; L)</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 6</div>
+  <div class="corpo">
+    <p>Determine a quantidade de calor necessária para derreter completamente <span class="dado">50 g de gelo</span> que já se encontra a <span class="dado">0 °C</span>.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 7</div>
+  <div class="corpo">
+    <p>Calcule a quantidade de calor necessária para vaporizar totalmente <span class="dado">30 g de água</span> que já está a <span class="dado">100 °C</span>.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 8</div>
+  <div class="corpo">
+    <p>Uma certa quantidade de gelo a <span class="dado">0 °C</span> recebe <span class="dado">12 000 cal</span> e derrete completamente. Qual é a massa de gelo que foi derretida?</p>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 4 — Curva de aquecimento e equilíbrio térmico</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 9</div>
+  <div class="corpo">
+    <p>Considere <span class="dado">100 g de gelo</span> a <span class="dado">0 °C</span>. Deseja-se derretê-lo completamente e, em seguida, aquecer a água resultante até <span class="dado">40 °C</span>.</p>
+    <ol class="itens" type="a">
+      <li>Qual é o calor necessário para a fusão de todo o gelo?</li>
+      <li>Qual é o calor necessário para aquecer a água de 0 °C até 40 °C?</li>
+      <li>Qual é a quantidade total de calor desse processo?</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 10</div>
+  <div class="corpo">
+    <p>Em um recipiente isolado, misturam-se <span class="dado">200 g de água a 80 °C</span> com <span class="dado">300 g de água a 20 °C</span>. Determine a temperatura de equilíbrio térmico da mistura.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 11</div>
+  <div class="corpo">
+    <p>Um bloco metálico de <span class="dado">500 g</span>, com calor específico <span class="dado">c = 0,1 cal/g&middot;°C</span>, é aquecido a <span class="dado">100 °C</span> e mergulhado em <span class="dado">200 g de água a 20 °C</span>, dentro de um recipiente isolado. Determine a temperatura de equilíbrio térmico do sistema.</p>
+  </div>
+</div>
+
+<footer class="rodape">
+  <span>Prof. Jonas Pinheiro — Física</span>
+  <span>Calorimetria &middot; 1ª série EM</span>
+</footer>
+
+</body>
+</html>

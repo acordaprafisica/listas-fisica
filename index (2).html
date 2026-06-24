@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Cargas Elétricas — 2ª série EM</title>
+<style>
+  :root{
+    --azul:#1F4E79;        /* cabeçalhos das seções */
+    --eletr:#7E22CE;       /* cor temática: eletricidade */
+    --eletr-claro:#F3E8FF; /* fundo de destaque */
+    --cinza:#F4F4F4;       /* fundo do enunciado */
+    --linha:#D9D9D9;
+    --texto:#1a1a1a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11pt;
+    color:var(--texto);
+    line-height:1.45;
+    margin:0 auto;
+    background:#fff;
+    padding:32px 40px;
+    max-width:820px;
+  }
+  header.topo{
+    border-bottom:3px solid var(--azul);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .topo .disciplina{
+    font-size:9.5pt;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--eletr);
+    font-weight:bold;
+  }
+  .topo h1{
+    font-size:17pt;
+    color:var(--azul);
+    margin:4px 0 2px;
+  }
+  .topo .prof{
+    font-size:10pt;
+    color:#555;
+  }
+  .ident{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    margin:14px 0 18px;
+    font-size:10.5pt;
+  }
+  .ident .campo{flex:1 1 auto;}
+  .ident .linha-preench{
+    display:inline-block;
+    border-bottom:1px solid #888;
+    min-width:120px;
+  }
+  .ident .campo.nome .linha-preench{min-width:280px;}
+
+  h2.secao{
+    font-size:12pt;
+    color:var(--azul);
+    border-left:5px solid var(--eletr);
+    padding:4px 0 4px 10px;
+    margin:22px 0 10px;
+    background:linear-gradient(90deg,var(--eletr-claro),transparent);
+  }
+
+  table.formulas{
+    width:100%;
+    border-collapse:collapse;
+    margin:6px 0 4px;
+    font-size:10.5pt;
+  }
+  table.formulas caption{
+    text-align:left;
+    font-weight:bold;
+    color:var(--azul);
+    padding-bottom:5px;
+  }
+  table.formulas th{
+    background:var(--azul);
+    color:#fff;
+    text-align:left;
+    padding:6px 10px;
+    font-size:10pt;
+  }
+  table.formulas td{
+    padding:6px 10px;
+    border-bottom:1px solid var(--linha);
+  }
+  table.formulas tr:nth-child(even) td{background:var(--cinza);}
+  table.formulas .form{
+    font-family:"Cambria Math", Georgia, serif;
+    font-weight:bold;
+    color:var(--eletr);
+    white-space:nowrap;
+  }
+
+  .exercicio{
+    margin:0 0 12px;
+    border:1px solid var(--linha);
+    border-radius:6px;
+    overflow:hidden;
+    page-break-inside:avoid;
+  }
+  .exercicio .cab{
+    background:var(--eletr);
+    color:#fff;
+    font-weight:bold;
+    padding:5px 12px;
+    font-size:10.5pt;
+  }
+  .exercicio .corpo{
+    background:var(--cinza);
+    padding:9px 12px;
+  }
+  .exercicio .corpo p{margin:0;}
+  .exercicio .itens{margin:6px 0 0; padding-left:22px;}
+  .exercicio .itens li{margin:2px 0;}
+  .dado{font-weight:bold; color:var(--azul);}
+
+  footer.rodape{
+    margin-top:22px;
+    border-top:2px solid var(--azul);
+    padding-top:8px;
+    font-size:9pt;
+    color:#666;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media print{
+    body{padding:0; font-size:10.5pt;}
+    @page{margin:1.4cm;}
+    .exercicio{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="disciplina">Física &middot; Eletrostática</div>
+  <h1>Cargas elétricas e notação científica</h1>
+  <div class="prof">Prof. Jonas Pinheiro &nbsp;|&nbsp; 2ª série — Ensino Médio</div>
+</header>
+
+<div class="ident">
+  <span class="campo nome">Nome: <span class="linha-preench"></span></span>
+  <span class="campo">Turma: <span class="linha-preench"></span></span>
+  <span class="campo">Data: <span class="linha-preench"></span></span>
+</div>
+
+<table class="formulas">
+  <caption>Fórmulas e constantes de referência</caption>
+  <thead>
+    <tr><th>Grandeza</th><th>Relação</th><th>Observações</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Carga elementar</td><td class="form">e = 1,6 &times; 10<sup>&minus;19</sup> C</td><td>módulo da carga de 1 elétron ou de 1 próton</td></tr>
+    <tr><td>Carga de um corpo</td><td class="form">q = n &middot; e</td><td>n = número de elétrons em excesso ou em falta</td></tr>
+    <tr><td>Número de elétrons</td><td class="form">n = q / e</td><td>obtido isolando n na relação acima</td></tr>
+  </tbody>
+</table>
+<p style="font-size:9.5pt;color:#666;margin:2px 0 0;">Atenção à notação científica: ao <strong>multiplicar</strong>, somam-se os expoentes de 10; ao <strong>dividir</strong>, subtraem-se. A unidade de carga é o coulomb (C).</p>
+
+<h2 class="secao">Bloco 1 — Conceitos de carga elétrica</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 1</div>
+  <div class="corpo">
+    <p>Dois corpos inicialmente neutros sofrem eletrização. O corpo A <strong>ganhou</strong> elétrons e o corpo B <strong>perdeu</strong> elétrons.</p>
+    <ol class="itens" type="a">
+      <li>Qual dos corpos ficou eletrizado <strong>negativamente</strong>? E qual ficou <strong>positivamente</strong>?</li>
+      <li>Justifique sua resposta relacionando o sinal da carga com o ganho ou a perda de elétrons.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 2</div>
+  <div class="corpo">
+    <p>Em processos de eletrização, costuma-se dizer que "um corpo positivo atraiu cargas" ou que "prótons passaram de um corpo para o outro".</p>
+    <ol class="itens" type="a">
+      <li>Por que, na eletrização de corpos sólidos, são os <strong>elétrons</strong> que se deslocam, e nunca os prótons?</li>
+      <li>Sabendo disso, o que realmente acontece, em termos de elétrons, quando um corpo se torna positivo?</li>
+    </ol>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 2 — Determinando a carga (q = n &middot; e)</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 3</div>
+  <div class="corpo">
+    <p>Um corpo recebeu um excesso de <span class="dado">n = 5 &times; 10<sup>10</sup></span> elétrons. Determine o módulo da carga elétrica adquirida por esse corpo.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 4</div>
+  <div class="corpo">
+    <p>Durante um experimento, um corpo perdeu <span class="dado">n = 2 &times; 10<sup>15</sup></span> elétrons. Calcule o módulo da carga elétrica resultante.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 5</div>
+  <div class="corpo">
+    <p>Uma esfera metálica apresenta um excesso de <span class="dado">n = 4 &times; 10<sup>18</sup></span> elétrons. Determine o módulo de sua carga e, em seguida, escreva o resultado também na forma decimal (sem notação científica).</p>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 3 — Determinando o número de elétrons (n = q / e)</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 6</div>
+  <div class="corpo">
+    <p>Um corpo está eletrizado negativamente com carga de módulo <span class="dado">q = 3,2 &times; 10<sup>&minus;9</sup> C</span>. Quantos elétrons foram transferidos para esse corpo?</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 7</div>
+  <div class="corpo">
+    <p>Uma carga de módulo <span class="dado">q = 8 &times; 10<sup>&minus;6</sup> C</span> foi medida em um corpo eletrizado. Determine o número de elétrons em excesso (ou em falta) nesse corpo.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 8</div>
+  <div class="corpo">
+    <p>Um corpo possui carga de módulo <span class="dado">q = 1,6 &times; 10<sup>&minus;3</sup> C</span>. Calcule o número de elétrons correspondente a essa carga.</p>
+  </div>
+</div>
+
+<footer class="rodape">
+  <span>Prof. Jonas Pinheiro — Física</span>
+  <span>Eletrostática &middot; 2ª série EM</span>
+</footer>
+
+</body>
+</html>

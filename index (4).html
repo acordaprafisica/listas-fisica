@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Processos de Eletrização — 2ª série EM</title>
+<style>
+  :root{
+    --azul:#1F4E79;        /* cabeçalhos das seções */
+    --eletr:#7E22CE;       /* cor temática: eletricidade */
+    --eletr-claro:#F3E8FF; /* fundo de destaque */
+    --cinza:#F4F4F4;       /* fundo do enunciado */
+    --linha:#D9D9D9;
+    --texto:#1a1a1a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11pt;
+    color:var(--texto);
+    line-height:1.45;
+    margin:0 auto;
+    background:#fff;
+    padding:32px 40px;
+    max-width:820px;
+  }
+  header.topo{
+    border-bottom:3px solid var(--azul);
+    padding-bottom:12px;
+    margin-bottom:16px;
+  }
+  .topo .disciplina{
+    font-size:9.5pt;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--eletr);
+    font-weight:bold;
+  }
+  .topo h1{
+    font-size:17pt;
+    color:var(--azul);
+    margin:4px 0 2px;
+  }
+  .topo .prof{
+    font-size:10pt;
+    color:#555;
+  }
+  .ident{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 24px;
+    margin:14px 0 18px;
+    font-size:10.5pt;
+  }
+  .ident .campo{flex:1 1 auto;}
+  .ident .linha-preench{
+    display:inline-block;
+    border-bottom:1px solid #888;
+    min-width:120px;
+  }
+  .ident .campo.nome .linha-preench{min-width:280px;}
+
+  h2.secao{
+    font-size:12pt;
+    color:var(--azul);
+    border-left:5px solid var(--eletr);
+    padding:4px 0 4px 10px;
+    margin:22px 0 10px;
+    background:linear-gradient(90deg,var(--eletr-claro),transparent);
+  }
+
+  table.formulas{
+    width:100%;
+    border-collapse:collapse;
+    margin:6px 0 4px;
+    font-size:10.5pt;
+  }
+  table.formulas caption{
+    text-align:left;
+    font-weight:bold;
+    color:var(--azul);
+    padding-bottom:5px;
+  }
+  table.formulas th{
+    background:var(--azul);
+    color:#fff;
+    text-align:left;
+    padding:6px 10px;
+    font-size:10pt;
+  }
+  table.formulas td{
+    padding:6px 10px;
+    border-bottom:1px solid var(--linha);
+  }
+  table.formulas tr:nth-child(even) td{background:var(--cinza);}
+  table.formulas .form{
+    font-family:"Cambria Math", Georgia, serif;
+    font-weight:bold;
+    color:var(--eletr);
+    white-space:nowrap;
+  }
+
+  .tribo{
+    margin:6px 0 4px;
+    padding:10px 12px;
+    background:var(--eletr-claro);
+    border:1px solid #E0C8F5;
+    border-radius:6px;
+    font-size:10.5pt;
+  }
+  .tribo .serie{
+    font-weight:bold;
+    color:var(--azul);
+    text-align:center;
+    margin:6px 0 4px;
+    font-size:11pt;
+  }
+  .tribo .legenda{
+    display:flex;
+    justify-content:space-between;
+    font-size:9.5pt;
+    color:#555;
+  }
+
+  .exercicio{
+    margin:0 0 12px;
+    border:1px solid var(--linha);
+    border-radius:6px;
+    overflow:hidden;
+    page-break-inside:avoid;
+  }
+  .exercicio .cab{
+    background:var(--eletr);
+    color:#fff;
+    font-weight:bold;
+    padding:5px 12px;
+    font-size:10.5pt;
+  }
+  .exercicio .corpo{
+    background:var(--cinza);
+    padding:9px 12px;
+  }
+  .exercicio .corpo p{margin:0;}
+  .exercicio .itens{margin:6px 0 0; padding-left:22px;}
+  .exercicio .itens li{margin:2px 0;}
+  .dado{font-weight:bold; color:var(--azul);}
+
+  footer.rodape{
+    margin-top:22px;
+    border-top:2px solid var(--azul);
+    padding-top:8px;
+    font-size:9pt;
+    color:#666;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media print{
+    body{padding:0; font-size:10.5pt;}
+    @page{margin:1.4cm;}
+    .exercicio{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="disciplina">Física &middot; Eletrostática</div>
+  <h1>Processos de eletrização</h1>
+  <div class="prof">Prof. Jonas Pinheiro &nbsp;|&nbsp; 2ª série — Ensino Médio</div>
+</header>
+
+<div class="ident">
+  <span class="campo nome">Nome: <span class="linha-preench"></span></span>
+  <span class="campo">Turma: <span class="linha-preench"></span></span>
+  <span class="campo">Data: <span class="linha-preench"></span></span>
+</div>
+
+<table class="formulas">
+  <caption>Conceitos e dados de referência</caption>
+  <thead>
+    <tr><th>Item</th><th>Relação / ideia-chave</th><th>Observações</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Atrito</td><td class="form">corpos com sinais opostos</td><td>elétrons passam de um corpo ao outro; ambos eram neutros</td></tr>
+    <tr><td>Contato (esferas idênticas)</td><td class="form">q<sub>final</sub> = (q<sub>1</sub> + q<sub>2</sub> + ...) / n</td><td>corpos ficam com o mesmo sinal; carga se distribui igualmente</td></tr>
+    <tr><td>Indução</td><td class="form">sinal oposto ao do indutor</td><td>não há contato; usa polarização + aterramento</td></tr>
+    <tr><td>Conservação da carga</td><td class="form">Q<sub>total</sub> = constante</td><td>a carga total de um sistema isolado não muda</td></tr>
+    <tr><td>Relação com elétrons</td><td class="form">n = q / e &nbsp;(e = 1,6 &times; 10<sup>&minus;19</sup> C)</td><td>positivo &rarr; falta de elétrons; negativo &rarr; excesso</td></tr>
+  </tbody>
+</table>
+
+<h2 class="secao">Bloco 1 — Eletrização por atrito</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 1</div>
+  <div class="corpo">
+    <p>Ao atritar uma régua de plástico no cabelo, ela passa a atrair pequenos objetos.</p>
+    <ol class="itens" type="a">
+      <li>Explique, em termos de transferência de elétrons, o que acontece com a régua e com o cabelo durante o atrito.</li>
+      <li>Se a régua fica eletrizada negativamente, qual o sinal da carga do cabelo? Justifique.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 2</div>
+  <div class="corpo">
+    <p>Dois corpos inicialmente neutros são atritados um no outro.</p>
+    <ol class="itens" type="a">
+      <li>É possível que os dois fiquem eletrizados com o <strong>mesmo</strong> sinal? Justifique usando a conservação da carga.</li>
+      <li>O que se pode afirmar sobre os <strong>módulos</strong> das cargas adquiridas pelos dois corpos?</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 3</div>
+  <div class="corpo">
+    <p>A <strong>série triboelétrica</strong> ordena os materiais segundo a tendência de ceder ou receber elétrons no atrito. Materiais mais à esquerda tendem a <strong>ceder</strong> elétrons (ficam positivos); mais à direita tendem a <strong>receber</strong> elétrons (ficam negativos):</p>
+    <div class="tribo">
+      <div class="serie">Vidro &rarr; Lã &rarr; Seda &rarr; Algodão &rarr; Borracha &rarr; Plástico (PVC)</div>
+      <div class="legenda"><span>&larr; cede elétrons (fica +)</span><span>recebe elétrons (fica &minus;) &rarr;</span></div>
+    </div>
+    <p>Para cada par atritado a seguir, indique qual material fica <strong>positivo</strong> e qual fica <strong>negativo</strong>:</p>
+    <ol class="itens" type="a">
+      <li>Vidro atritado com seda.</li>
+      <li>Lã atritada com PVC.</li>
+      <li>Algodão atritado com borracha.</li>
+    </ol>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 2 — Eletrização por contato</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 4</div>
+  <div class="corpo">
+    <p>Um corpo eletrizado positivamente encosta em um condutor inicialmente neutro e, em seguida, é afastado.</p>
+    <ol class="itens" type="a">
+      <li>Qual o sinal da carga que o condutor, antes neutro, adquire?</li>
+      <li>Por que, na eletrização por contato, os dois corpos terminam com cargas de <strong>mesmo</strong> sinal?</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 5</div>
+  <div class="corpo">
+    <p>Duas esferas metálicas <strong>idênticas</strong>, uma com carga <span class="dado">+8 µC</span> e outra <span class="dado">neutra</span>, são colocadas em contato e depois separadas. Qual a carga final de cada esfera?</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 6</div>
+  <div class="corpo">
+    <p>Duas esferas metálicas idênticas têm cargas <span class="dado">+10 µC</span> e <span class="dado">&minus;4 µC</span>. Elas são postas em contato e, em seguida, separadas. Determine a carga final de cada esfera.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 7</div>
+  <div class="corpo">
+    <p>Três esferas metálicas idênticas, A, B e C. Inicialmente A tem carga <span class="dado">+12 µC</span> e B e C estão <span class="dado">neutras</span>. Realizam-se, nesta ordem:</p>
+    <ol class="itens" type="a">
+      <li>A esfera A toca a esfera B e é afastada. Qual a carga de A e de B?</li>
+      <li>Em seguida, a esfera B toca a esfera C e é afastada. Quais as cargas finais de A, B e C?</li>
+    </ol>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 3 — Eletrização por indução</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 8</div>
+  <div class="corpo">
+    <p>Descreva, passo a passo, como eletrizar um condutor neutro por <strong>indução</strong>, usando um bastão carregado negativamente como indutor. Considere as etapas: aproximação do indutor, polarização do condutor, aterramento, retirada do fio-terra e afastamento do indutor. Indique qual será o <strong>sinal final</strong> da carga do condutor em relação ao indutor.</p>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 9</div>
+  <div class="corpo">
+    <p>Um bastão eletrizado é aproximado de pequenos pedaços de papel <strong>neutros</strong> e os atrai, mesmo sem encostar neles. Explique, usando a ideia de polarização (indução), por que um corpo neutro pode ser atraído por um corpo eletrizado.</p>
+  </div>
+</div>
+
+<h2 class="secao">Bloco 4 — Síntese</h2>
+
+<div class="exercicio">
+  <div class="cab">Questão 10</div>
+  <div class="corpo">
+    <p>Identifique qual processo de eletrização (atrito, contato ou indução) está envolvido em cada situação:</p>
+    <ol class="itens" type="a">
+      <li>Pentear o cabelo seco e perceber que ele fica "arrepiado", grudando no pente.</li>
+      <li>Encostar uma esfera carregada em outra idêntica e neutra, que passa a repelir a primeira.</li>
+      <li>Aproximar (sem encostar) um bastão eletrizado de uma esfera neutra aterrada e, ao final, obter a esfera com carga de sinal oposto ao do bastão.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exercicio">
+  <div class="cab">Questão 11</div>
+  <div class="corpo">
+    <p>Após ser eletrizada, uma esfera fica com carga de <span class="dado">+3,2 µC</span> (lembre-se: 1 µC = 10<sup>&minus;6</sup> C; e = 1,6 &times; 10<sup>&minus;19</sup> C).</p>
+    <ol class="itens" type="a">
+      <li>Quantos elétrons correspondem a essa carga? (use n = q / e)</li>
+      <li>Como o sinal da carga é positivo, houve excesso ou falta de elétrons nessa esfera? Justifique.</li>
+    </ol>
+  </div>
+</div>
+
+<footer class="rodape">
+  <span>Prof. Jonas Pinheiro — Física</span>
+  <span>Processos de eletrização &middot; 2ª série EM</span>
+</footer>
+
+</body>
+</html>

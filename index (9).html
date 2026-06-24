@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Revisão — Ondulatória | 3º EM</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Arial&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    padding: 30px 20px;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+
+  /* CABEÇALHO */
+  .header {
+    background: #1F4E79;
+    color: #ffffff;
+    padding: 22px 32px 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .header-left h1 {
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .header-left h2 {
+    font-size: 11pt;
+    font-weight: 400;
+    opacity: 0.88;
+    margin-bottom: 2px;
+  }
+  .header-left .subtitulo {
+    font-size: 9.5pt;
+    opacity: 0.72;
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 9.5pt;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .header-right p { margin-bottom: 2px; }
+
+  /* FAIXA TEMÁTICA */
+  .tema-bar {
+    background: #0e7490;
+    color: #fff;
+    text-align: center;
+    font-size: 9.5pt;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 0;
+    text-transform: uppercase;
+  }
+
+  /* DADOS DO ALUNO */
+  .dados-aluno {
+    background: #eaf4fb;
+    border-bottom: 2px solid #b6d9ee;
+    padding: 12px 32px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .campo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10pt;
+    color: #1F4E79;
+    font-weight: 600;
+  }
+  .campo .linha {
+    border-bottom: 1.5px solid #1F4E79;
+    min-width: 160px;
+    height: 16px;
+  }
+  .campo.turma .linha { min-width: 70px; }
+  .campo.data .linha { min-width: 90px; }
+
+  /* CORPO */
+  .corpo { padding: 24px 32px 32px 32px; }
+
+  /* TABELA DE FÓRMULAS */
+  .formula-section { margin-bottom: 24px; }
+  .formula-section h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1F4E79;
+    border-left: 4px solid #0e7490;
+    padding-left: 8px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .formula-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+  .formula-table th {
+    background: #1F4E79;
+    color: #fff;
+    padding: 7px 12px;
+    text-align: left;
+    font-size: 9.5pt;
+    font-weight: 600;
+  }
+  .formula-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid #d8e8f3;
+    vertical-align: middle;
+  }
+  .formula-table tr:nth-child(even) td { background: #eaf4fb; }
+  .formula-table tr:nth-child(odd) td { background: #f7fbfe; }
+  .formula-table .formula { font-weight: 700; color: #0e4d78; font-size: 10.5pt; }
+
+  /* BLOCO DE QUESTÕES */
+  .bloco { margin-bottom: 22px; }
+  .bloco-titulo {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #0e7490;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border-bottom: 1.5px solid #b6d9ee;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  /* QUESTÃO */
+  .questao {
+    border-radius: 7px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 1px solid #cde4f0;
+  }
+  .questao-header {
+    background: #0e7490;
+    color: #ffffff;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 5px 14px;
+    letter-spacing: 0.3px;
+  }
+  .questao-body {
+    background: #f0f8fc;
+    padding: 10px 14px;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: #1a1a2e;
+  }
+  .questao-body .destaque {
+    font-weight: 700;
+    color: #0e4d78;
+  }
+
+  /* ALTERNATIVAS MC */
+  .alternativas {
+    margin-top: 7px;
+    padding-left: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .alternativa {
+    font-size: 10pt;
+    color: #1a1a2e;
+    padding: 1px 0;
+  }
+
+  /* DIVISOR */
+  .divisor {
+    border: none;
+    border-top: 1.5px dashed #b6d9ee;
+    margin: 20px 0;
+  }
+
+  /* RODAPÉ */
+  .footer {
+    background: #1F4E79;
+    color: #c8dff0;
+    font-size: 8.5pt;
+    text-align: center;
+    padding: 10px 32px;
+    letter-spacing: 0.3px;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+    .questao { break-inside: avoid; }
+    .bloco { break-inside: avoid; }
+  }
+  @page { margin: 1.5cm; size: A4; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- CABEÇALHO -->
+  <div class="header">
+    <div class="header-left">
+      <h1>FÍSICA &mdash; 3º Ano do Ensino Médio</h1>
+      <h2>Lista de Revisão &mdash; Ondulatória</h2>
+      <p class="subtitulo">Propagação &bull; Interferência &bull; Velocidade de Ondas &bull; Ondas Estacionárias</p>
+    </div>
+    <div class="header-right">
+      <p><strong>Prof. Jonas Pinheiro</strong></p>
+      <p>2º Trimestre &mdash; 2025</p>
+      <p>20 Questões</p>
+    </div>
+  </div>
+
+  <!-- FAIXA TEMÁTICA -->
+  <div class="tema-bar">&#127754; Ondulatória — Lista de Revisão</div>
+
+  <!-- DADOS DO ALUNO -->
+  <div class="dados-aluno">
+    <div class="campo">
+      <span>Nome:</span>
+      <div class="linha"></div>
+    </div>
+    <div class="campo turma">
+      <span>Turma:</span>
+      <div class="linha"></div>
+    </div>
+    <div class="campo data">
+      <span>Data:</span>
+      <div class="linha"></div>
+    </div>
+  </div>
+
+  <!-- CORPO -->
+  <div class="corpo">
+
+    <!-- FÓRMULAS -->
+    <div class="formula-section">
+      <h3>📐 Fórmulas de Referência</h3>
+      <table class="formula-table">
+        <thead>
+          <tr>
+            <th>Grandeza / Relação</th>
+            <th>Fórmula</th>
+            <th>Legenda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Equação fundamental das ondas</td>
+            <td class="formula">v = f · λ</td>
+            <td>v: velocidade (m/s) &nbsp;|&nbsp; f: frequência (Hz) &nbsp;|&nbsp; λ: comprimento de onda (m)</td>
+          </tr>
+          <tr>
+            <td>Período e frequência</td>
+            <td class="formula">T = 1 / f</td>
+            <td>T: período (s)</td>
+          </tr>
+          <tr>
+            <td>Velocidade em cordas</td>
+            <td class="formula">v = √(F / μ)</td>
+            <td>F: força de tração (N) &nbsp;|&nbsp; μ: densidade linear (kg/m)</td>
+          </tr>
+          <tr>
+            <td>Superposição de pulsos</td>
+            <td class="formula">y<sub>res</sub> = y<sub>1</sub> + y<sub>2</sub></td>
+            <td>Princípio da superposição (soma algébrica)</td>
+          </tr>
+          <tr>
+            <td>Onda estacionária — comprimento</td>
+            <td class="formula">L = n · (λ / 2)</td>
+            <td>n: número de segmentos (ventres)</td>
+          </tr>
+          <tr>
+            <td>Distância crista–vale</td>
+            <td class="formula">d<sub>c–v</sub> = λ / 2</td>
+            <td>Crista e vale adjacentes estão separados por meio comprimento de onda</td>
+          </tr>
+          <tr>
+            <td>Velocidade da luz no vácuo</td>
+            <td class="formula">c = 3 × 10⁸ m/s</td>
+            <td>Toda onda eletromagnética no vácuo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divisor">
+
+    <!-- BLOCO 1 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 1 — Equação Fundamental e Período</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 01</div>
+        <div class="questao-body">
+          Uma boia flutua em alto mar e oscila completando um ciclo a cada <span class="destaque">0,25 s</span>. Observa-se que duas cristas consecutivas estão separadas por <span class="destaque">2 m</span>.
+          <br><br>
+          <strong>a)</strong> Qual é a frequência de oscilação da boia?<br>
+          <strong>b)</strong> Qual é a velocidade de propagação dessa onda?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 02</div>
+        <div class="questao-body">
+          Um som de frequência <span class="destaque">400 Hz</span> propaga-se no ar com comprimento de onda de <span class="destaque">0,75 m</span>. Ao penetrar em uma barra metálica, a frequência permanece a mesma, mas a velocidade passa a ser <span class="destaque">1200 m/s</span>.
+          <br><br>
+          <strong>a)</strong> Qual é a velocidade do som no ar, nessa situação?<br>
+          <strong>b)</strong> Qual é o novo comprimento de onda dentro da barra metálica?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 03</div>
+        <div class="questao-body">
+          Um diapasão utilizado em um laboratório de acústica vibra com frequência de <span class="destaque">250 Hz</span>.
+          <br><br>
+          <strong>a)</strong> Qual é o período dessa vibração, em segundos?<br>
+          <strong>b)</strong> Expresse o período em milissegundos.
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 04</div>
+        <div class="questao-body">
+          Uma onda na superfície de uma piscina tem frequência de <span class="destaque">2 Hz</span>. Um nadador estático observa as ondas passando por ele.
+          <br><br>
+          <strong>a)</strong> Quantas cristas passam pelo nadador em <span class="destaque">6 segundos</span>?<br>
+          <strong>b)</strong> Qual é o período dessas ondas?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 05</div>
+        <div class="questao-body">
+          O som de um apito de árbitro propaga-se no ar a <span class="destaque">340 m/s</span> com frequência de <span class="destaque">680 Hz</span>.
+          <br><br>
+          <strong>a)</strong> Qual é o comprimento de onda desse som?<br>
+          <strong>b)</strong> Se a frequência fosse o dobro, o que aconteceria com o comprimento de onda, mantida a mesma velocidade?
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 2 — Velocidade em Cordas: v = √(F/μ)</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 06</div>
+        <div class="questao-body">
+          Uma corda de densidade linear <span class="destaque">μ = 0,01 kg/m</span> está submetida a uma força de tração de <span class="destaque">9 N</span>.
+          <br><br>
+          <strong>a)</strong> Qual é a velocidade de propagação de uma onda nessa corda?<br>
+          <strong>b)</strong> Se a tração fosse reduzida à metade, qual seria a nova velocidade?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 07</div>
+        <div class="questao-body">
+          Uma onda propaga-se em uma corda com velocidade de <span class="destaque">30 m/s</span>, sob uma tensão de <span class="destaque">0,09 N</span>.
+          <br><br>
+          Determine a densidade linear (μ) dessa corda.
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 08</div>
+        <div class="questao-body">
+          Uma corda de densidade linear <span class="destaque">μ = 0,04 kg/m</span> está sob tensão de <span class="destaque">16 N</span>, produzindo ondas com velocidade de <span class="destaque">20 m/s</span>.
+          <br><br>
+          <strong>a)</strong> Confirme o valor da velocidade usando a fórmula.<br>
+          <strong>b)</strong> Para que a velocidade de propagação <strong>dobre</strong>, qual deve ser a nova tensão aplicada à corda?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 09</div>
+        <div class="questao-body">
+          Uma corda tem densidade linear <span class="destaque">μ = 0,04 kg/m</span> e tensão de <span class="destaque">100 N</span>. Nessa corda é gerada uma onda de comprimento de onda <span class="destaque">λ = 2 m</span>.
+          <br><br>
+          <strong>a)</strong> Calcule a velocidade de propagação da onda.<br>
+          <strong>b)</strong> Determine a frequência da onda.
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 10</div>
+        <div class="questao-body">
+          Uma onda se propaga a <span class="destaque">20 m/s</span> em uma corda de densidade linear <span class="destaque">μ = 0,05 kg/m</span>.
+          <br><br>
+          Qual é a tensão (força de tração) aplicada a essa corda?
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 3 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 3 — Superposição de Pulsos</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 11</div>
+        <div class="questao-body">
+          Dois pulsos propagam-se em sentidos opostos em uma mesma corda: um voltado <strong>para cima</strong> com amplitude de <span class="destaque">8 cm</span> e outro voltado <strong>para baixo</strong> com amplitude de <span class="destaque">5 cm</span>.
+          <br><br>
+          <strong>a)</strong> Qual é a amplitude resultante no instante da superposição total?<br>
+          <strong>b)</strong> Qual é a direção do deslocamento resultante?<br>
+          <strong>c)</strong> Após o cruzamento, os pulsos continuam com as mesmas amplitudes originais? Justifique.
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 12</div>
+        <div class="questao-body">
+          Dois pulsos idênticos, cada um com amplitude de <span class="destaque">6 cm</span>, propagam-se em sentidos opostos ao longo de uma corda: um voltado para cima e o outro para baixo.
+          <br><br>
+          <strong>a)</strong> O que ocorre com a amplitude resultante no instante de superposição total?<br>
+          <strong>b)</strong> Esse fenômeno é chamado de interferência construtiva ou destrutiva? Explique.
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 4 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 4 — Ondas Eletromagnéticas e Aplicações</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 13</div>
+        <div class="questao-body">
+          Um forno micro-ondas doméstico emite radiação com comprimento de onda de <span class="destaque">0,03 m</span>. Sabe-se que toda radiação eletromagnética propaga-se no vácuo à velocidade de <span class="destaque">3 × 10⁸ m/s</span>.
+          <br><br>
+          Calcule a frequência das micro-ondas emitidas por esse forno.
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 14</div>
+        <div class="questao-body">
+          Luz visível de comprimento de onda <span class="destaque">500 nm</span> (1 nm = 10⁻⁹ m) propaga-se no vácuo à velocidade de <span class="destaque">3 × 10⁸ m/s</span>.
+          <br><br>
+          <strong>a)</strong> Calcule a frequência dessa luz.<br>
+          <strong>b)</strong> A qual cor do espectro visível esse comprimento de onda corresponde aproximadamente?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 15</div>
+        <div class="questao-body">
+          Um barco equipado com sonar emite um pulso sonoro que demora <span class="destaque">0,6 s</span> para ir até o fundo do mar e retornar. Considerando que o som se propaga na água a <span class="destaque">340 m/s</span> (valor hipotético para este exercício).
+          <br><br>
+          Qual é a profundidade do fundo do mar nesse ponto?
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 5 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 5 — Geometria das Ondas e Ondas Estacionárias</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 16</div>
+        <div class="questao-body">
+          Em uma onda periódica, a distância entre uma crista e o vale imediatamente seguinte é de <span class="destaque">2 m</span>.
+          <br><br>
+          <strong>a)</strong> Qual é o comprimento de onda dessa onda?<br>
+          <strong>b)</strong> Qual seria a distância entre duas cristas consecutivas?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 17</div>
+        <div class="questao-body">
+          Entre dois pontos separados por <span class="destaque">15 m</span>, propagam-se ondas de comprimento de onda <span class="destaque">2,5 m</span>.
+          <br><br>
+          <strong>a)</strong> Quantos comprimentos de onda completos cabem nessa distância?<br>
+          <strong>b)</strong> O que essa quantidade representa fisicamente em relação à defasagem entre os dois pontos?
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 18</div>
+        <div class="questao-body">
+          Uma corda de comprimento <span class="destaque">L = 1,2 m</span> é fixada nas duas extremidades e vibra em uma onda estacionária com <span class="destaque">3 nós internos</span> (ou seja, 4 segmentos entre os nós das extremidades). A frequência de vibração é <span class="destaque">20 Hz</span>.
+          <br><br>
+          <strong>a)</strong> Determine o comprimento de onda dessa onda estacionária.<br>
+          <strong>b)</strong> Calcule a velocidade de propagação da onda na corda.
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 6 -->
+    <div class="bloco">
+      <div class="bloco-titulo">Bloco 6 — Questões Conceituais</div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 19</div>
+        <div class="questao-body">
+          Classifique cada onda abaixo como <strong>transversal</strong> ou <strong>longitudinal</strong> e justifique sua resposta:
+          <br><br>
+          <strong>(I)</strong> Onda sonora propagando-se no ar.<br>
+          <strong>(II)</strong> Onda em uma corda vibrando perpendicularmente ao seu comprimento.<br>
+          <strong>(III)</strong> Onda sísmica do tipo P (primária).
+        </div>
+      </div>
+
+      <div class="questao">
+        <div class="questao-header">Questão 20</div>
+        <div class="questao-body">
+          Ao passar do ar para a água, uma onda sonora tem sua velocidade de propagação <strong>aumentada</strong>.
+          <br><br>
+          <strong>a)</strong> O que acontece com a <strong>frequência</strong> da onda nessa mudança de meio? Justifique.<br>
+          <strong>b)</strong> O que acontece com o <strong>comprimento de onda</strong>? A resposta é diferente da anterior? Por quê?<br>
+          <strong>c)</strong> Qual grandeza se conserva obrigatoriamente na mudança de meio e por quê?
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fim corpo -->
+
+  <!-- RODAPÉ -->
+  <div class="footer">
+    Prof. Jonas Pinheiro &nbsp;&bull;&nbsp; Física — 3º Ano do Ensino Médio &nbsp;&bull;&nbsp; Lista de Revisão — Ondulatória &nbsp;&bull;&nbsp; 2º Trimestre 2025
+  </div>
+
+</div><!-- fim page -->
+</body>
+</html>
