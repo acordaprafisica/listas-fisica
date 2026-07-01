@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MU × MUV — Telemetria do Movimento</title>
+<style>
+  :root{
+    --bg: #0F1320;
+    --panel: #171C2B;
+    --panel-2: #1E2436;
+    --line: #2A3149;
+    --text: #EAEDF5;
+    --muted: #8891A8;
+    --mu: #4FD1C5;       /* movimento uniforme - constante */
+    --mu-dim: rgba(79,209,197,0.15);
+    --muv: #FF7A50;      /* MUV - variado */
+    --muv-dim: rgba(255,122,80,0.15);
+    --grid: #262C42;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(79,209,197,0.06), transparent),
+      radial-gradient(1000px 500px at 100% 10%, rgba(255,122,80,0.06), transparent),
+      var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+    padding: 32px 20px 80px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  header.hero{
+    display:flex; flex-direction:column; gap:10px;
+    padding: 28px 28px 32px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    margin-bottom:34px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; right:-40px; top:-40px; width:220px; height:220px;
+    background: conic-gradient(from 90deg, var(--mu), transparent 40%, var(--muv), transparent 80%);
+    filter: blur(60px); opacity:.35;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono','Courier New',monospace;
+    font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  h1{
+    margin:0; font-size:clamp(28px,4.2vw,42px); line-height:1.1; font-weight:800;
+    letter-spacing:-0.01em;
+  }
+  h1 span.mu{color:var(--mu);}
+  h1 span.muv{color:var(--muv);}
+  .hero p{margin:0; color:var(--muted); max-width:620px; font-size:15px;}
+
+  section.mod{
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:var(--panel);
+    margin-bottom:28px;
+    overflow:hidden;
+  }
+  .mod-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 24px; border-bottom:1px solid var(--line);
+    gap: 16px; flex-wrap:wrap;
+  }
+  .mod-head .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em;
+    padding:4px 10px; border-radius:100px; text-transform:uppercase; font-weight:700;
+  }
+  .tag.mu{ color:var(--mu); background:var(--mu-dim); border:1px solid rgba(79,209,197,0.4);}
+  .tag.muv{ color:var(--muv); background:var(--muv-dim); border:1px solid rgba(255,122,80,0.4);}
+  .mod-head h2{margin:2px 0 0; font-size:22px;}
+  .mod-head .formula{
+    font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text);
+    background:#0C1019; border:1px solid var(--line); padding:8px 14px; border-radius:10px;
+  }
+
+  .track-area{padding:22px 24px 8px;}
+  .track-shell{
+    background:#0B0E17; border:1px solid var(--line); border-radius:12px;
+    padding:22px 20px 14px; position:relative;
+  }
+  .track-line{
+    position:relative; height:64px; margin-top:6px;
+  }
+  .rail{
+    position:absolute; left:0; right:0; top:50%; height:2px;
+    background: linear-gradient(90deg, var(--grid), var(--line) 4%, var(--line) 96%, var(--grid));
+    transform: translateY(-1px);
+  }
+  .tick{
+    position:absolute; top:calc(50% - 7px); width:1px; height:14px; background:var(--line);
+  }
+  .tick.major{height:20px; top:calc(50% - 10px); background:#3A4160;}
+  .tick-label{
+    position:absolute; top:calc(50% + 12px); transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted);
+  }
+  .vehicle{
+    position:absolute; top:50%; width:46px; height:26px; transform:translate(0,-50%);
+    transition: none;
+  }
+  .vehicle svg{width:100%; height:100%; display:block;}
+  .trail{
+    position:absolute; top:50%; height:4px; right:100%; transform:translateY(-50%);
+    border-radius:4px; opacity:.55;
+  }
+  .finish{
+    position:absolute; top:calc(50% - 16px); right:0; width:2px; height:32px;
+    background: repeating-linear-gradient(180deg, var(--text) 0 4px, transparent 4px 8px);
+    opacity:.5;
+  }
+
+  .readouts{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:10px; margin:18px 0 4px;
+  }
+  .readout{
+    background:#0C1019; border:1px solid var(--line); border-radius:10px;
+    padding:10px 12px;
+  }
+  .readout .k{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase;}
+  .readout .v{font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:700; margin-top:2px;}
+  .readout .v.mu{color:var(--mu);}
+  .readout .v.muv{color:var(--muv);}
+
+  .controls{
+    display:flex; flex-wrap:wrap; gap:22px; padding:16px 24px 22px; align-items:flex-end;
+    border-top:1px solid var(--line); margin-top:14px;
+  }
+  .ctrl{display:flex; flex-direction:column; gap:6px; min-width:170px; flex:1;}
+  .ctrl label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.06em;
+    display:flex; justify-content:space-between;
+  }
+  .ctrl label b{color:var(--text); font-weight:700;}
+  input[type=range]{
+    -webkit-appearance:none; width:100%; height:5px; border-radius:4px; background:var(--line); outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:17px; height:17px; border-radius:50%; cursor:pointer;
+    background: var(--accentcolor,#fff); border:3px solid #0B0E17;
+  }
+  .mod.mu-mod input[type=range]::-webkit-slider-thumb{background:var(--mu);}
+  .mod.muv-mod input[type=range]::-webkit-slider-thumb{background:var(--muv);}
+  .btnrow{display:flex; gap:10px;}
+  button.act{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    padding:10px 16px; border-radius:9px; border:1px solid var(--line); background:#0C1019; color:var(--text);
+    cursor:pointer; font-weight:700; transition: transform .1s ease, border-color .15s ease;
+  }
+  button.act:hover{transform:translateY(-1px);}
+  .mod.mu-mod button.act.primary{border-color:var(--mu); color:var(--mu);}
+  .mod.muv-mod button.act.primary{border-color:var(--muv); color:var(--muv);}
+
+  .graphs{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:0 24px 24px;
+  }
+  @media (max-width:720px){ .graphs{grid-template-columns:1fr;} }
+  .graph-box{
+    background:#0C1019; border:1px solid var(--line); border-radius:12px; padding:14px 14px 10px;
+  }
+  .graph-box h3{
+    margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+  canvas{width:100%; height:150px; display:block; border-radius:6px;}
+
+  .note{
+    padding:16px 24px 24px; color:var(--muted); font-size:13.5px; line-height:1.6; border-top:1px solid var(--line);
+  }
+  .note b{color:var(--text);}
+
+  .compare{
+    border:1px solid var(--line); border-radius:16px; background:var(--panel);
+    padding:24px; margin-top:6px;
+  }
+  .compare h2{margin-top:0; font-size:20px;}
+  table{width:100%; border-collapse:collapse; margin-top:10px; font-size:14px;}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line);}
+  th{color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em;}
+  td.mu-c{color:var(--mu); font-family:'JetBrains Mono',monospace;}
+  td.muv-c{color:var(--muv); font-family:'JetBrains Mono',monospace;}
+
+  footer{
+    text-align:center; color:var(--muted); font-size:12px; margin-top:36px;
+    font-family:'JetBrains Mono',monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Acorda pra Física · Cinemática</div>
+    <h1><span class="mu">MU</span> × <span class="muv">MUV</span> — o painel de bordo do movimento</h1>
+    <p>Ajuste velocidade e aceleração e observe, em tempo real, como a posição e a velocidade evoluem em cada tipo de movimento. Os dois carrinhos abaixo saem do zero e viajam pela mesma pista de 100 m.</p>
+  </header>
+
+  <!-- MOVIMENTO UNIFORME -->
+  <section class="mod mu-mod">
+    <div class="mod-head">
+      <div>
+        <span class="tag mu">Velocidade constante</span>
+        <h2>Movimento Uniforme (MU)</h2>
+      </div>
+      <div class="formula">x = x<sub>0</sub> + v·t</div>
+    </div>
+
+    <div class="track-area">
+      <div class="track-shell">
+        <div class="track-line" id="mu-track">
+          <div class="rail"></div>
+          <div class="finish"></div>
+          <div class="vehicle" id="mu-vehicle" style="left:0%;">
+            <svg viewBox="0 0 64 34"><g fill="none" stroke="none">
+              <rect x="4" y="14" width="46" height="12" rx="4" fill="#4FD1C5"/>
+              <rect x="14" y="6" width="24" height="12" rx="4" fill="#0F1320" opacity=".85"/>
+              <circle cx="16" cy="27" r="6" fill="#0B0E17"/>
+              <circle cx="42" cy="27" r="6" fill="#0B0E17"/>
+              <circle cx="16" cy="27" r="2.4" fill="#4FD1C5"/>
+              <circle cx="42" cy="27" r="2.4" fill="#4FD1C5"/>
+            </g></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="readouts">
+        <div class="readout"><div class="k">tempo</div><div class="v mu" id="mu-t">0.0 s</div></div>
+        <div class="readout"><div class="k">posição</div><div class="v mu" id="mu-x">0.0 m</div></div>
+        <div class="readout"><div class="k">velocidade</div><div class="v mu" id="mu-v">5.0 m/s</div></div>
+        <div class="readout"><div class="k">aceleração</div><div class="v mu">0.0 m/s²</div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl">
+        <label>Velocidade (v) <b id="mu-v-label">5.0 m/s</b></label>
+        <input type="range" id="mu-v-slider" min="1" max="20" step="0.5" value="5">
+      </div>
+      <div class="btnrow">
+        <button class="act primary" id="mu-play">▶ Iniciar</button>
+        <button class="act" id="mu-reset">↺ Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="graphs">
+      <div class="graph-box">
+        <h3>Posição × Tempo (reta — velocidade constante)</h3>
+        <canvas id="mu-graph-x" width="480" height="150"></canvas>
+      </div>
+      <div class="graph-box">
+        <h3>Velocidade × Tempo (reta horizontal)</h3>
+        <canvas id="mu-graph-v" width="480" height="150"></canvas>
+      </div>
+    </div>
+
+    <div class="note">No MU a velocidade não muda: o carrinho percorre <b>distâncias iguais em tempos iguais</b>. Por isso o gráfico x×t é uma <b>reta inclinada</b> (a inclinação é a própria velocidade) e o gráfico v×t é uma <b>reta horizontal</b> — não há aceleração.</div>
+  </section>
+
+  <!-- MOVIMENTO UNIFORMEMENTE VARIADO -->
+  <section class="mod muv-mod">
+    <div class="mod-head">
+      <div>
+        <span class="tag muv">Velocidade em mudança</span>
+        <h2>Movimento Uniformemente Variado (MUV)</h2>
+      </div>
+      <div class="formula">v = v<sub>0</sub> + a·t &nbsp;|&nbsp; x = x<sub>0</sub> + v<sub>0</sub>t + a·t²/2</div>
+    </div>
+
+    <div class="track-area">
+      <div class="track-shell">
+        <div class="track-line" id="muv-track">
+          <div class="rail"></div>
+          <div class="finish"></div>
+          <div class="trail" id="muv-trail"></div>
+          <div class="vehicle" id="muv-vehicle" style="left:0%;">
+            <svg viewBox="0 0 64 34"><g>
+              <rect x="4" y="14" width="46" height="12" rx="4" fill="#FF7A50"/>
+              <rect x="14" y="6" width="24" height="12" rx="4" fill="#0F1320" opacity=".85"/>
+              <circle cx="16" cy="27" r="6" fill="#0B0E17"/>
+              <circle cx="42" cy="27" r="6" fill="#0B0E17"/>
+              <circle cx="16" cy="27" r="2.4" fill="#FF7A50"/>
+              <circle cx="42" cy="27" r="2.4" fill="#FF7A50"/>
+            </g></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="readouts">
+        <div class="readout"><div class="k">tempo</div><div class="v muv" id="muv-t">0.0 s</div></div>
+        <div class="readout"><div class="k">posição</div><div class="v muv" id="muv-x">0.0 m</div></div>
+        <div class="readout"><div class="k">velocidade</div><div class="v muv" id="muv-v">0.0 m/s</div></div>
+        <div class="readout"><div class="k">aceleração</div><div class="v muv" id="muv-a">2.0 m/s²</div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl">
+        <label>Velocidade inicial (v<sub>0</sub>) <b id="muv-v0-label">0.0 m/s</b></label>
+        <input type="range" id="muv-v0-slider" min="0" max="12" step="0.5" value="0">
+      </div>
+      <div class="ctrl">
+        <label>Aceleração (a) <b id="muv-a-label">2.0 m/s²</b></label>
+        <input type="range" id="muv-a-slider" min="-4" max="6" step="0.2" value="2">
+      </div>
+      <div class="btnrow">
+        <button class="act primary" id="muv-play">▶ Iniciar</button>
+        <button class="act" id="muv-reset">↺ Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="graphs">
+      <div class="graph-box">
+        <h3>Posição × Tempo (parábola)</h3>
+        <canvas id="muv-graph-x" width="480" height="150"></canvas>
+      </div>
+      <div class="graph-box">
+        <h3>Velocidade × Tempo (reta inclinada)</h3>
+        <canvas id="muv-graph-v" width="480" height="150"></canvas>
+      </div>
+    </div>
+
+    <div class="note">No MUV a velocidade muda a uma taxa constante: a <b>aceleração</b>. Quanto maior o rastro atrás do carrinho, maior a velocidade naquele instante — repare como ele cresce com o tempo. O gráfico v×t vira uma <b>reta inclinada</b> (inclinação = aceleração) e o gráfico x×t vira uma <b>parábola</b>, porque a posição cresce cada vez mais rápido. Coloque a aceleração negativa para simular uma frenagem.</div>
+  </section>
+
+  <div class="compare">
+    <h2>Resumo comparativo</h2>
+    <table>
+      <thead><tr><th>Grandeza</th><th>MU</th><th>MUV</th></tr></thead>
+      <tbody>
+        <tr><td>Velocidade</td><td class="mu-c">constante</td><td class="muv-c">varia linearmente com t</td></tr>
+        <tr><td>Aceleração</td><td class="mu-c">a = 0</td><td class="muv-c">a = constante ≠ 0</td></tr>
+        <tr><td>Equação de x(t)</td><td class="mu-c">x = x₀ + v·t</td><td class="muv-c">x = x₀ + v₀t + a·t²/2</td></tr>
+        <tr><td>Equação de v(t)</td><td class="mu-c">v = constante</td><td class="muv-c">v = v₀ + a·t</td></tr>
+        <tr><td>Gráfico x × t</td><td class="mu-c">reta</td><td class="muv-c">parábola</td></tr>
+        <tr><td>Gráfico v × t</td><td class="mu-c">reta horizontal</td><td class="muv-c">reta inclinada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>MU × MUV — painel interativo · feito para estudo de cinemática</footer>
+</div>
+
+<script>
+function setupTicks(trackId){
+  const track = document.getElementById(trackId);
+  for(let m=0;m<=100;m+=10){
+    const t = document.createElement('div');
+    t.className = 'tick' + (m%50===0?' major':'');
+    t.style.left = m + '%';
+    track.appendChild(t);
+    const lab = document.createElement('div');
+    lab.className='tick-label';
+    lab.style.left = m + '%';
+    lab.textContent = m+'m';
+    track.appendChild(lab);
+  }
+}
+setupTicks('mu-track');
+setupTicks('muv-track');
+
+function makeGraph(canvasId, color, kind){
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = {l:34, r:10, t:10, b:22};
+  return {
+    draw(points, tMax, yMax){
+      ctx.clearRect(0,0,W,H);
+      ctx.strokeStyle = '#262C42';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad.l, H-pad.b); ctx.lineTo(W-pad.r, H-pad.b);
+      ctx.moveTo(pad.l, H-pad.b); ctx.lineTo(pad.l, pad.t);
+      ctx.stroke();
+      ctx.fillStyle = '#8891A8';
+      ctx.font = '10px monospace';
+      ctx.fillText('t', W-pad.r-6, H-pad.b+14);
+      ctx.fillText(kind, pad.l-28, pad.t+8);
+
+      if(points.length < 2) return;
+      const xScale = (W-pad.l-pad.r) / Math.max(tMax, 0.001);
+      const yScale = (H-pad.t-pad.b) / Math.max(Math.abs(yMax), 0.001);
+      const zeroY = H-pad.b;
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      points.forEach((p,i)=>{
+        const px = pad.l + p.t*xScale;
+        const py = zeroY - p.y*yScale;
+        if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      });
+      ctx.stroke();
+
+      const last = points[points.length-1];
+      const lx = pad.l + last.t*xScale;
+      const ly = zeroY - last.y*yScale;
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(lx,ly,4,0,7); ctx.fill();
+    }
+  };
+}
+
+/* ---------- MU ---------- */
+(function(){
+  const TRACK_M = 100;
+  let v = 5, t = 0, running = false, lastTs = null, points = [];
+  const vehicle = document.getElementById('mu-vehicle');
+  const vSlider = document.getElementById('mu-v-slider');
+  const vLabel = document.getElementById('mu-v-label');
+  const tOut = document.getElementById('mu-t');
+  const xOut = document.getElementById('mu-x');
+  const vOut = document.getElementById('mu-v');
+  const playBtn = document.getElementById('mu-play');
+  const resetBtn = document.getElementById('mu-reset');
+  const gx = makeGraph('mu-graph-x', '#4FD1C5', 'x');
+  const gv = makeGraph('mu-graph-v', '#4FD1C5', 'v');
+
+  function reset(){
+    t = 0; points = [{t:0,y:0}];
+    lastTs = null;
+    updateVisual(0);
+    tOut.textContent='0.0 s'; xOut.textContent='0.0 m'; vOut.textContent=v.toFixed(1)+' m/s';
+    gx.draw(points, 5, TRACK_M);
+    gv.draw([{t:0,y:v},{t:5,y:v}], 5, Math.max(v,1));
+  }
+  function updateVisual(x){
+    const pct = Math.min(x/TRACK_M,1)*100;
+    vehicle.style.left = pct + '%';
+  }
+  function tick(ts){
+    if(!running){ lastTs=null; return; }
+    if(lastTs===null) lastTs = ts;
+    const dt = Math.min((ts-lastTs)/1000, 0.05);
+    lastTs = ts;
+    t += dt;
+    let x = v*t;
+    if(x >= TRACK_M){ t=0; x=0; points=[{t:0,y:0}]; }
+    points.push({t, y:x});
+    if(points.length>400) points.shift();
+    updateVisual(x);
+    tOut.textContent = t.toFixed(1)+' s';
+    xOut.textContent = x.toFixed(1)+' m';
+    vOut.textContent = v.toFixed(1)+' m/s';
+    const tMax = Math.max(TRACK_M/v, 1);
+    gx.draw(points, tMax, TRACK_M);
+    gv.draw([{t:0,y:v},{t:tMax,y:v}], tMax, Math.max(v,1));
+    requestAnimationFrame(tick);
+  }
+  vSlider.addEventListener('input', ()=>{
+    v = parseFloat(vSlider.value);
+    vLabel.textContent = v.toFixed(1)+' m/s';
+    reset();
+  });
+  playBtn.addEventListener('click', ()=>{
+    running = !running;
+    playBtn.textContent = running ? '⏸ Pausar' : '▶ Iniciar';
+    if(running) requestAnimationFrame(tick);
+  });
+  resetBtn.addEventListener('click', ()=>{
+    running=false; playBtn.textContent='▶ Iniciar'; reset();
+  });
+  reset();
+})();
+
+/* ---------- MUV ---------- */
+(function(){
+  const TRACK_M = 100;
+  let v0 = 0, a = 2, t = 0, running = false, lastTs = null, points = [];
+  const vehicle = document.getElementById('muv-vehicle');
+  const trail = document.getElementById('muv-trail');
+  const v0Slider = document.getElementById('muv-v0-slider');
+  const aSlider = document.getElementById('muv-a-slider');
+  const v0Label = document.getElementById('muv-v0-label');
+  const aLabel = document.getElementById('muv-a-label');
+  const tOut = document.getElementById('muv-t');
+  const xOut = document.getElementById('muv-x');
+  const vOut = document.getElementById('muv-v');
+  const aOut = document.getElementById('muv-a');
+  const playBtn = document.getElementById('muv-play');
+  const resetBtn = document.getElementById('muv-reset');
+  const gx = makeGraph('muv-graph-x', '#FF7A50', 'x');
+  const gv = makeGraph('muv-graph-v', '#FF7A50', 'v');
+
+  function estimateTMax(){
+    // time to reach TRACK_M with current v0,a (numeric-ish estimate)
+    if(a === 0) return v0>0 ? TRACK_M/v0 : 5;
+    const disc = v0*v0 + 2*a*TRACK_M;
+    if(disc < 0) return 8; // won't reach if decelerating hard
+    const tHit = (-v0 + Math.sqrt(disc)) / a;
+    return tHit>0 ? Math.min(tHit, 20) : 8;
+  }
+
+  function reset(){
+    t = 0; points=[{t:0,y:0}]; lastTs=null;
+    updateVisual(0, v0);
+    tOut.textContent='0.0 s'; xOut.textContent='0.0 m'; vOut.textContent=v0.toFixed(1)+' m/s';
+    const tMax = estimateTMax();
+    gx.draw(points, tMax, TRACK_M);
+    const vAtEnd = v0 + a*tMax;
+    gv.draw([{t:0,y:v0},{t:tMax,y:vAtEnd}], tMax, Math.max(Math.abs(v0), Math.abs(vAtEnd), 1));
+  }
+  function updateVisual(x, vNow){
+    const pct = Math.min(Math.max(x/TRACK_M,0),1)*100;
+    vehicle.style.left = pct + '%';
+    const trailLen = Math.min(Math.max(vNow,0) * 4, 90);
+    trail.style.width = trailLen + 'px';
+    trail.style.background = `linear-gradient(90deg, transparent, #FF7A50)`;
+    trail.style.right = (100 - pct) + '%';
+  }
+  function tick(ts){
+    if(!running){ lastTs=null; return; }
+    if(lastTs===null) lastTs = ts;
+    const dt = Math.min((ts-lastTs)/1000, 0.05);
+    lastTs = ts;
+    t += dt;
+    let vNow = v0 + a*t;
+    let x = v0*t + 0.5*a*t*t;
+    let stoppedByDecel = (a<0 && vNow<=0);
+    if(x >= TRACK_M || x < 0 || stoppedByDecel){
+      t = 0; x = 0; vNow = v0; points=[{t:0,y:0}];
+    }
+    points.push({t, y:x});
+    if(points.length>400) points.shift();
+    updateVisual(x, vNow);
+    tOut.textContent = t.toFixed(1)+' s';
+    xOut.textContent = x.toFixed(1)+' m';
+    vOut.textContent = vNow.toFixed(1)+' m/s';
+    const tMax = estimateTMax();
+    gx.draw(points, tMax, TRACK_M);
+    const vAtEnd = v0 + a*tMax;
+    gv.draw([{t:0,y:v0},{t:Math.max(t,tMax),y: t>tMax? vNow : vAtEnd}], Math.max(t,tMax), Math.max(Math.abs(v0),Math.abs(vAtEnd),Math.abs(vNow),1));
+    requestAnimationFrame(tick);
+  }
+  v0Slider.addEventListener('input', ()=>{
+    v0 = parseFloat(v0Slider.value);
+    v0Label.textContent = v0.toFixed(1)+' m/s';
+    reset();
+  });
+  aSlider.addEventListener('input', ()=>{
+    a = parseFloat(aSlider.value);
+    aLabel.textContent = a.toFixed(1)+' m/s²';
+    aOut.textContent = a.toFixed(1)+' m/s²';
+    reset();
+  });
+  playBtn.addEventListener('click', ()=>{
+    running = !running;
+    playBtn.textContent = running ? '⏸ Pausar' : '▶ Iniciar';
+    if(running) requestAnimationFrame(tick);
+  });
+  resetBtn.addEventListener('click', ()=>{
+    running=false; playBtn.textContent='▶ Iniciar'; reset();
+  });
+  reset();
+})();
+</script>
+</body>
+</html>
