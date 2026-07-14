@@ -6,24 +6,27 @@
 <title>MU × MUV — Telemetria do Movimento</title>
 <style>
   :root{
-    --bg: #0F1320;
-    --panel: #171C2B;
-    --panel-2: #1E2436;
-    --line: #2A3149;
-    --text: #EAEDF5;
-    --muted: #8891A8;
-    --mu: #4FD1C5;       /* movimento uniforme - constante */
-    --mu-dim: rgba(79,209,197,0.15);
-    --muv: #FF7A50;      /* MUV - variado */
-    --muv-dim: rgba(255,122,80,0.15);
-    --grid: #262C42;
+    --bg: #F7F7F7;
+    --panel: #FFFFFF;
+    --panel-2: #F4F4F4;
+    --line: #D9D9D9;
+    --border: rgba(20,52,76,0.14);
+    --track-line: rgba(20,52,76,0.30);
+    --track-major: rgba(20,52,76,0.55);
+    --text: #14344C;
+    --muted: #84939E;
+    --mu: #0E7C74;       /* movimento uniforme - constante */
+    --mu-dim: rgba(14,124,116,0.12);
+    --muv: #C43E12;      /* MUV - variado */
+    --muv-dim: rgba(196,62,18,0.12);
+    --grid: #E3E3E3;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     background:
-      radial-gradient(1200px 600px at 15% -10%, rgba(79,209,197,0.06), transparent),
-      radial-gradient(1000px 500px at 100% 10%, rgba(255,122,80,0.06), transparent),
+      radial-gradient(1200px 600px at 15% -10%, rgba(14,124,116,0.05), transparent),
+      radial-gradient(1000px 500px at 100% 10%, rgba(196,62,18,0.05), transparent),
       var(--bg);
     color:var(--text);
     font-family:'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
@@ -34,18 +37,19 @@
   header.hero{
     display:flex; flex-direction:column; gap:10px;
     padding: 28px 28px 32px;
-    border:1px solid var(--line);
+    border:1px solid var(--border);
     border-radius:18px;
     background:linear-gradient(180deg, var(--panel), var(--panel-2));
     margin-bottom:34px;
     position:relative;
     overflow:hidden;
+    box-shadow:0 1px 0 rgba(20,52,76,0.05), 0 8px 24px -12px rgba(20,52,76,0.12);
   }
   header.hero::after{
     content:"";
     position:absolute; right:-40px; top:-40px; width:220px; height:220px;
     background: conic-gradient(from 90deg, var(--mu), transparent 40%, var(--muv), transparent 80%);
-    filter: blur(60px); opacity:.35;
+    filter: blur(60px); opacity:.16;
     pointer-events:none;
   }
   .eyebrow{
@@ -62,11 +66,12 @@
   .hero p{margin:0; color:var(--muted); max-width:620px; font-size:15px;}
 
   section.mod{
-    border:1px solid var(--line);
+    border:1px solid var(--border);
     border-radius:18px;
     background:var(--panel);
     margin-bottom:28px;
     overflow:hidden;
+    box-shadow:0 1px 0 rgba(20,52,76,0.05), 0 8px 24px -12px rgba(20,52,76,0.12);
   }
   .mod-head{
     display:flex; align-items:center; justify-content:space-between;
@@ -77,17 +82,17 @@
     font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em;
     padding:4px 10px; border-radius:100px; text-transform:uppercase; font-weight:700;
   }
-  .tag.mu{ color:var(--mu); background:var(--mu-dim); border:1px solid rgba(79,209,197,0.4);}
-  .tag.muv{ color:var(--muv); background:var(--muv-dim); border:1px solid rgba(255,122,80,0.4);}
+  .tag.mu{ color:var(--mu); background:var(--mu-dim); border:1px solid rgba(14,124,116,0.4);}
+  .tag.muv{ color:var(--muv); background:var(--muv-dim); border:1px solid rgba(196,62,18,0.4);}
   .mod-head h2{margin:2px 0 0; font-size:22px;}
   .mod-head .formula{
     font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text);
-    background:#0C1019; border:1px solid var(--line); padding:8px 14px; border-radius:10px;
+    background:var(--panel-2); border:1px solid var(--line); padding:8px 14px; border-radius:10px;
   }
 
   .track-area{padding:22px 24px 8px;}
   .track-shell{
-    background:#0B0E17; border:1px solid var(--line); border-radius:12px;
+    background:var(--panel-2); border:1px solid var(--line); border-radius:12px;
     padding:22px 20px 14px; position:relative;
   }
   .track-line{
@@ -95,13 +100,13 @@
   }
   .rail{
     position:absolute; left:0; right:0; top:50%; height:2px;
-    background: linear-gradient(90deg, var(--grid), var(--line) 4%, var(--line) 96%, var(--grid));
+    background: linear-gradient(90deg, var(--grid), var(--track-line) 4%, var(--track-line) 96%, var(--grid));
     transform: translateY(-1px);
   }
   .tick{
-    position:absolute; top:calc(50% - 7px); width:1px; height:14px; background:var(--line);
+    position:absolute; top:calc(50% - 7px); width:1px; height:14px; background:var(--track-line);
   }
-  .tick.major{height:20px; top:calc(50% - 10px); background:#3A4160;}
+  .tick.major{height:20px; top:calc(50% - 10px); background:var(--track-major);}
   .tick-label{
     position:absolute; top:calc(50% + 12px); transform:translateX(-50%);
     font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted);
@@ -126,7 +131,7 @@
     gap:10px; margin:18px 0 4px;
   }
   .readout{
-    background:#0C1019; border:1px solid var(--line); border-radius:10px;
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:10px 12px;
   }
   .readout .k{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase;}
@@ -149,14 +154,15 @@
   }
   input[type=range]::-webkit-slider-thumb{
     -webkit-appearance:none; width:17px; height:17px; border-radius:50%; cursor:pointer;
-    background: var(--accentcolor,#fff); border:3px solid #0B0E17;
+    background: var(--accentcolor,#fff); border:3px solid #FFFFFF;
+    box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgba(20,52,76,0.25);
   }
   .mod.mu-mod input[type=range]::-webkit-slider-thumb{background:var(--mu);}
   .mod.muv-mod input[type=range]::-webkit-slider-thumb{background:var(--muv);}
   .btnrow{display:flex; gap:10px;}
   button.act{
     font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase;
-    padding:10px 16px; border-radius:9px; border:1px solid var(--line); background:#0C1019; color:var(--text);
+    padding:10px 16px; border-radius:9px; border:1.5px solid var(--border); background:var(--panel); color:var(--text);
     cursor:pointer; font-weight:700; transition: transform .1s ease, border-color .15s ease;
   }
   button.act:hover{transform:translateY(-1px);}
@@ -168,7 +174,7 @@
   }
   @media (max-width:720px){ .graphs{grid-template-columns:1fr;} }
   .graph-box{
-    background:#0C1019; border:1px solid var(--line); border-radius:12px; padding:14px 14px 10px;
+    background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:14px 14px 10px;
   }
   .graph-box h3{
     margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);
@@ -182,8 +188,9 @@
   .note b{color:var(--text);}
 
   .compare{
-    border:1px solid var(--line); border-radius:16px; background:var(--panel);
+    border:1px solid var(--border); border-radius:16px; background:var(--panel);
     padding:24px; margin-top:6px;
+    box-shadow:0 1px 0 rgba(20,52,76,0.05), 0 8px 24px -12px rgba(20,52,76,0.12);
   }
   .compare h2{margin-top:0; font-size:20px;}
   table{width:100%; border-collapse:collapse; margin-top:10px; font-size:14px;}
@@ -224,12 +231,12 @@
           <div class="finish"></div>
           <div class="vehicle" id="mu-vehicle" style="left:0%;">
             <svg viewBox="0 0 64 34"><g fill="none" stroke="none">
-              <rect x="4" y="14" width="46" height="12" rx="4" fill="#4FD1C5"/>
-              <rect x="14" y="6" width="24" height="12" rx="4" fill="#0F1320" opacity=".85"/>
-              <circle cx="16" cy="27" r="6" fill="#0B0E17"/>
-              <circle cx="42" cy="27" r="6" fill="#0B0E17"/>
-              <circle cx="16" cy="27" r="2.4" fill="#4FD1C5"/>
-              <circle cx="42" cy="27" r="2.4" fill="#4FD1C5"/>
+              <rect x="4" y="14" width="46" height="12" rx="4" fill="#0E7C74"/>
+              <rect x="14" y="6" width="24" height="12" rx="4" fill="#14344C" opacity=".85"/>
+              <circle cx="16" cy="27" r="6" fill="#14344C"/>
+              <circle cx="42" cy="27" r="6" fill="#14344C"/>
+              <circle cx="16" cy="27" r="2.4" fill="#0E7C74"/>
+              <circle cx="42" cy="27" r="2.4" fill="#0E7C74"/>
             </g></svg>
           </div>
         </div>
@@ -286,12 +293,12 @@
           <div class="trail" id="muv-trail"></div>
           <div class="vehicle" id="muv-vehicle" style="left:0%;">
             <svg viewBox="0 0 64 34"><g>
-              <rect x="4" y="14" width="46" height="12" rx="4" fill="#FF7A50"/>
-              <rect x="14" y="6" width="24" height="12" rx="4" fill="#0F1320" opacity=".85"/>
-              <circle cx="16" cy="27" r="6" fill="#0B0E17"/>
-              <circle cx="42" cy="27" r="6" fill="#0B0E17"/>
-              <circle cx="16" cy="27" r="2.4" fill="#FF7A50"/>
-              <circle cx="42" cy="27" r="2.4" fill="#FF7A50"/>
+              <rect x="4" y="14" width="46" height="12" rx="4" fill="#C43E12"/>
+              <rect x="14" y="6" width="24" height="12" rx="4" fill="#14344C" opacity=".85"/>
+              <circle cx="16" cy="27" r="6" fill="#14344C"/>
+              <circle cx="42" cy="27" r="6" fill="#14344C"/>
+              <circle cx="16" cy="27" r="2.4" fill="#C43E12"/>
+              <circle cx="42" cy="27" r="2.4" fill="#C43E12"/>
             </g></svg>
           </div>
         </div>
@@ -378,13 +385,13 @@ function makeGraph(canvasId, color, kind){
   return {
     draw(points, tMax, yMax){
       ctx.clearRect(0,0,W,H);
-      ctx.strokeStyle = '#262C42';
+      ctx.strokeStyle = '#9AA5AF';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(pad.l, H-pad.b); ctx.lineTo(W-pad.r, H-pad.b);
       ctx.moveTo(pad.l, H-pad.b); ctx.lineTo(pad.l, pad.t);
       ctx.stroke();
-      ctx.fillStyle = '#8891A8';
+      ctx.fillStyle = '#84939E';
       ctx.font = '10px monospace';
       ctx.fillText('t', W-pad.r-6, H-pad.b+14);
       ctx.fillText(kind, pad.l-28, pad.t+8);
@@ -425,8 +432,8 @@ function makeGraph(canvasId, color, kind){
   const vOut = document.getElementById('mu-v');
   const playBtn = document.getElementById('mu-play');
   const resetBtn = document.getElementById('mu-reset');
-  const gx = makeGraph('mu-graph-x', '#4FD1C5', 'x');
-  const gv = makeGraph('mu-graph-v', '#4FD1C5', 'v');
+  const gx = makeGraph('mu-graph-x', '#0E7C74', 'x');
+  const gv = makeGraph('mu-graph-v', '#0E7C74', 'v');
 
   function reset(){
     t = 0; points = [{t:0,y:0}];
@@ -447,9 +454,14 @@ function makeGraph(canvasId, color, kind){
     lastTs = ts;
     t += dt;
     let x = v*t;
-    if(x >= TRACK_M){ t=0; x=0; points=[{t:0,y:0}]; }
+    let finished = false;
+    if(x >= TRACK_M){
+      t = TRACK_M / v;
+      x = TRACK_M;
+      finished = true;
+    }
     points.push({t, y:x});
-    if(points.length>400) points.shift();
+    if(points.length>10000) points.shift();
     updateVisual(x);
     tOut.textContent = t.toFixed(1)+' s';
     xOut.textContent = x.toFixed(1)+' m';
@@ -457,6 +469,11 @@ function makeGraph(canvasId, color, kind){
     const tMax = Math.max(TRACK_M/v, 1);
     gx.draw(points, tMax, TRACK_M);
     gv.draw([{t:0,y:v},{t:tMax,y:v}], tMax, Math.max(v,1));
+    if(finished){
+      running = false;
+      playBtn.textContent = '▶ Iniciar';
+      return;
+    }
     requestAnimationFrame(tick);
   }
   vSlider.addEventListener('input', ()=>{
@@ -491,8 +508,8 @@ function makeGraph(canvasId, color, kind){
   const aOut = document.getElementById('muv-a');
   const playBtn = document.getElementById('muv-play');
   const resetBtn = document.getElementById('muv-reset');
-  const gx = makeGraph('muv-graph-x', '#FF7A50', 'x');
-  const gv = makeGraph('muv-graph-v', '#FF7A50', 'v');
+  const gx = makeGraph('muv-graph-x', '#C43E12', 'x');
+  const gv = makeGraph('muv-graph-v', '#C43E12', 'v');
 
   function estimateTMax(){
     // time to reach TRACK_M with current v0,a (numeric-ish estimate)
@@ -517,7 +534,7 @@ function makeGraph(canvasId, color, kind){
     vehicle.style.left = pct + '%';
     const trailLen = Math.min(Math.max(vNow,0) * 4, 90);
     trail.style.width = trailLen + 'px';
-    trail.style.background = `linear-gradient(90deg, transparent, #FF7A50)`;
+    trail.style.background = `linear-gradient(90deg, transparent, #C43E12)`;
     trail.style.right = (100 - pct) + '%';
   }
   function tick(ts){
@@ -528,12 +545,26 @@ function makeGraph(canvasId, color, kind){
     t += dt;
     let vNow = v0 + a*t;
     let x = v0*t + 0.5*a*t*t;
-    let stoppedByDecel = (a<0 && vNow<=0);
-    if(x >= TRACK_M || x < 0 || stoppedByDecel){
-      t = 0; x = 0; vNow = v0; points=[{t:0,y:0}];
+    let finished = false;
+
+    if(x >= TRACK_M){
+      t = estimateTMax();
+      x = TRACK_M;
+      vNow = v0 + a*t;
+      finished = true;
+    } else if(a<0 && vNow<=0){
+      t = -v0/a;
+      x = v0*t + 0.5*a*t*t;
+      vNow = 0;
+      finished = true;
+    } else if(x < 0){
+      x = 0;
+      vNow = Math.max(vNow,0);
+      finished = true;
     }
+
     points.push({t, y:x});
-    if(points.length>400) points.shift();
+    if(points.length>10000) points.shift();
     updateVisual(x, vNow);
     tOut.textContent = t.toFixed(1)+' s';
     xOut.textContent = x.toFixed(1)+' m';
@@ -542,6 +573,11 @@ function makeGraph(canvasId, color, kind){
     gx.draw(points, tMax, TRACK_M);
     const vAtEnd = v0 + a*tMax;
     gv.draw([{t:0,y:v0},{t:Math.max(t,tMax),y: t>tMax? vNow : vAtEnd}], Math.max(t,tMax), Math.max(Math.abs(v0),Math.abs(vAtEnd),Math.abs(vNow),1));
+    if(finished){
+      running = false;
+      playBtn.textContent = '▶ Iniciar';
+      return;
+    }
     requestAnimationFrame(tick);
   }
   v0Slider.addEventListener('input', ()=>{
